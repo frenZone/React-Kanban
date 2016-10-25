@@ -10,6 +10,12 @@
 </head>
 <body>
   <div id='root'></div>
+  <script>
+    function stopDefAction(evt) {
+        evt.preventDefault();
+    }
+    document.getElementsByClassName('preventReload').addEventListener('click', stopDefAction, false);
+  </script>
   <script type="text/babel" src="./app.js"></script>
 </body>
 </html>

@@ -43,8 +43,67 @@ app.get('/apiD',(req,res) =>{
   })
   .then(data =>{
     res.json({data});
-  });
-});
+  })
+})
+app.post('/moveToProgress',(req,res) =>{
+  db.Card.findById(req.body.id)
+    .then(card => {
+      card.update({
+        title: card.title,
+        priority: card.priority,
+        status: 'Progress',
+        createdBy: card.createdBy,
+        assignedTo: card.assignedTo
+      })
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.error(err);
+    })
+})
+app.post('/moveToQueue',(req,res) =>{
+  db.Card.findById(req.body.id)
+    .then(card => {
+      card.update({
+        title: card.title,
+        priority: card.priority,
+        status: 'Queue',
+        createdBy: card.createdBy,
+        assignedTo: card.assignedTo
+      })
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.error(err);
+    })
+})
+app.post('/moveToDone',(req,res) =>{
+  db.Card.findById(req.body.id)
+    .then(card => {
+      card.update({
+        title: card.title,
+        priority: card.priority,
+        status: 'Done',
+        createdBy: card.createdBy,
+        assignedTo: card.assignedTo
+      })
+      res.redirect('/');
+    })
+    .catch(err => {
+      console.error(err);
+    })
+})
+app.post('/newTask',(req,res) => {
+  db.Card.create({
+    title: req.body.title,
+    priority: req.body.priority,
+    status: 'Queue',
+    createdBy: req.body.createdBy,
+    assignedTo: req.body.assignedTo
+  })
+  res.redirect('/');
+})
+>>>>>>> bd927fda3b932285f133af365a47b45751877d52
 
 
 app.listen(8080, function() {
