@@ -46,7 +46,9 @@ class KanBanPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>KanBan Page</h1>
+        <div id='header'>
+          <h1>KanBan Page</h1>
+        </div>
         <KanBanList queue={this.state.queue} progress={this.state.progress} done={this.state.done} />
       </div>
     );
@@ -102,15 +104,14 @@ class KanBanList extends React.Component {
     })
 
     return (
-      <div>
-        <h2>KanBan List</h2>
-        <div id='Queue'>
+      <div id='listHolder'>
+        <div id='Queue' className='list'>
         {QueueListNode}
         </div>
-        <div id='Progress'>
+        <div id='Progress' className='list'>
         {ProgressListNode}
         </div>
-        <div id='Done'>
+        <div id='Done' className='list'>
         {DoneListNode}
         </div>
       </div>

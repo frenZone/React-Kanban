@@ -1,2 +1,9 @@
 body {
   background-color: red; }
+
+#listHolder {
+  display: flex;
+  flex-flow: row wrap; }
+
+.list {
+  flex: 0 0 30%; }

@@ -1,4 +1,19 @@
+@mixin flexParent() {
+  display: flex;
+  flex-flow: row wrap;
+}
+
 body {
   background-color: red;
 }
 
+
+
+
+#listHolder {
+  @include flexParent();
+}
+
+.list {
+  flex: 0 0 30%;
+}
