@@ -1,9 +1,27 @@
-body {
-  background-color: red; }
-
 #listHolder {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row wrap;
+  width: 970px;
+  margin: 0 auto; }
 
 .list {
-  flex: 0 0 30%; }
+  flex: 0 0 33%; }
+
+h1 {
+  text-align: center; }
+
+.queueList, .progressList, .doneList {
+  text-align: center; }
+
+.invisible {
+  display: none; }
+
+#newInput {
+  display: flex;
+  flex-flow: row wrap;
+  width: 150px;
+  justify-content: center;
+  margin: auto; }
+  #newInput div {
+    flex: 0 0 100%;
+    text-align: center; }

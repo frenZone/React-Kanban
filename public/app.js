@@ -49,6 +49,20 @@ class KanBanPage extends React.Component {
         <div id='header'>
           <h1>KanBan Page</h1>
         </div>
+        <div id='newInput'>
+          <div>
+            <button id='toggleInput'>toggle</button>
+          </div>
+          <div>
+            <form method='post' action='/newTask' id='newInput'>
+              <input type='text' name='title'/>
+              <input type='text' name='priority'/>
+              <input type='text' name='createdBy'/>
+              <input type='text' name='assignedTo'/>
+              <button>Enter</button>
+            </form>
+          </div>
+        </div>
         <KanBanList queue={this.state.queue} progress={this.state.progress} done={this.state.done} />
       </div>
     );
@@ -74,6 +88,7 @@ class KanBanList extends React.Component {
           priority={dataItem.priority}
           createdBy={dataItem.createdBy}
           assignedTo={dataItem.assignedTo}
+          id={dataItem.id}
           key={dataItem.id}
         />
       )
@@ -86,6 +101,7 @@ class KanBanList extends React.Component {
           priority={dataItem.priority}
           createdBy={dataItem.createdBy}
           assignedTo={dataItem.assignedTo}
+          id={dataItem.id}
           key={dataItem.id}
         />
       )
@@ -98,6 +114,7 @@ class KanBanList extends React.Component {
           priority={dataItem.priority}
           createdBy={dataItem.createdBy}
           assignedTo={dataItem.assignedTo}
+          id={dataItem.id}
           key={dataItem.id}
         />
       )
@@ -106,13 +123,16 @@ class KanBanList extends React.Component {
     return (
       <div id='listHolder'>
         <div id='Queue' className='list'>
-        {QueueListNode}
+          <h1>Queue</h1>
+          {QueueListNode}
         </div>
         <div id='Progress' className='list'>
-        {ProgressListNode}
+          <h1>In Progress</h1>
+          {ProgressListNode}
         </div>
         <div id='Done' className='list'>
-        {DoneListNode}
+          <h1>Done</h1>
+          {DoneListNode}
         </div>
       </div>
     )
@@ -122,13 +142,17 @@ class KanBanList extends React.Component {
 class Queue extends React.Component {
 
   render() {
+    console.log(this.props);
     return(
       <div className="queueList">
-        <h2>Queue</h2>
         <h4>{this.props.title}</h4>
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
+        <form method='post' action='/moveToProgress'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <button>in progress</button>
+        </form>
       </div>
     )
   }
@@ -139,11 +163,18 @@ class Progress extends React.Component {
   render() {
     return(
       <div className="progressList">
-        <h2>In Progress</h2>
         <h4>{this.props.title}</h4>
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
+        <form method='post' action='/moveToQueue'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <button>queue</button>
+        </form>
+        <form method='post' action='/moveToDone'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <button>done</button>
+        </form>
       </div>
     )
   }
@@ -154,11 +185,14 @@ class Done extends React.Component {
   render() {
     return(
       <div className="doneList">
-        <h2>Done</h2>
         <h4>{this.props.title}</h4>
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
+        <form method='post' action='/moveToProgress'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <button>in progress</button>
+        </form>
       </div>
     )
   }
