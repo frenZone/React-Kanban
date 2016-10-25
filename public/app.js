@@ -5,7 +5,9 @@ class KanBanPage extends React.Component {
     super();
 
     this.state = {
-      data: []
+      progress: [],
+      queue: [],
+      done: []
     }
     this.onKanBan = this.onKanBan.bind(this)
   }
@@ -13,31 +15,39 @@ class KanBanPage extends React.Component {
   onKanBan(data) {
     const parsedData = JSON.parse(data.currentTarget.response).data
     console.log(parsedData)
-    this.setState({data: parsedData});
+    if(parsedData[0].status === 'Progress') {
+      this.setState({progress: parsedData});
+    } else if (parsedData[0].status === 'Queue') {
+      this.setState({queue: parsedData});
+    } else {
+      this.setState({done: parsedData});
+    }
   }
 
   onKanBanError(error) {
     console.error(error);
   }
 
-  loadData() {
+  loadData(APIurl) {
     const oReq = new XMLHttpRequest();
     oReq.addEventListener('load', this.onKanBan);
     oReq.addEventListener('error', this.onKanBanError);
 
-    oReq.open('GET', this.props.url);
+    oReq.open('GET', APIurl);
     oReq.send();
   }
 
   componentWillMount() {
-    this.loadData();
+    this.loadData(this.props.url + 'P');
+    this.loadData(this.props.url + 'Q');
+    this.loadData(this.props.url + 'D');
   }
 
   render() {
     return (
       <div>
         <h1>KanBan Page</h1>
-        <KanBanList data={this.state.data} />
+        <KanBanList queue={this.state.queue} progress={this.state.progress} done={this.state.done} />
       </div>
     );
   }
@@ -55,37 +65,54 @@ class KanBanList extends React.Component {
 
 
   render() {
-    const kanBanListNode = this.props.data.map((dataItem) => {
-      if (dataItem.status === 'Queue') {
-        return (
-          <Queue
-            title={dataItem.title}
-            createdBy={dataItem.createdBy}
-            key={dataItem.id}
-          />
-        )
-      } else if (dataItem.status === 'Progress') {
-        return (
-          <Progress
+    const QueueListNode = this.props.queue.map((dataItem) => {
+      return (
+        <Queue
           title={dataItem.title}
+          priority={dataItem.priority}
           createdBy={dataItem.createdBy}
+          assignedTo={dataItem.assignedTo}
           key={dataItem.id}
         />
-        )
-      } else {
-        return (
-          <Done
-          title={dataItem.title}
-          createdBy={dataItem.createdBy}
-          key={dataItem.id}
-        />
-        )
-      }
+      )
     })
+
+    const ProgressListNode = this.props.progress.map((dataItem) => {
+      return (
+        <Progress
+          title={dataItem.title}
+          priority={dataItem.priority}
+          createdBy={dataItem.createdBy}
+          assignedTo={dataItem.assignedTo}
+          key={dataItem.id}
+        />
+      )
+    })
+
+    const DoneListNode = this.props.done.map((dataItem) => {
+      return (
+        <Done
+          title={dataItem.title}
+          priority={dataItem.priority}
+          createdBy={dataItem.createdBy}
+          assignedTo={dataItem.assignedTo}
+          key={dataItem.id}
+        />
+      )
+    })
+
     return (
       <div>
         <h2>KanBan List</h2>
-        {kanBanListNode}
+        <div id='Queue'>
+        {QueueListNode}
+        </div>
+        <div id='Progress'>
+        {ProgressListNode}
+        </div>
+        <div id='Done'>
+        {DoneListNode}
+        </div>
       </div>
     )
   }
@@ -96,9 +123,11 @@ class Queue extends React.Component {
   render() {
     return(
       <div className="queueList">
-        <h1>Queue</h1>
+        <h2>Queue</h2>
         <h4>{this.props.title}</h4>
-        <p>{this.props.createdBy}</p>
+        <p>Priority Level: {this.props.priority}</p>
+        <p>Created By: {this.props.createdBy}</p>
+        <p>Assigned To: {this.props.assignedTo}</p>
       </div>
     )
   }
@@ -109,9 +138,11 @@ class Progress extends React.Component {
   render() {
     return(
       <div className="progressList">
-        <h1>Progress</h1>
+        <h2>In Progress</h2>
         <h4>{this.props.title}</h4>
-        <p>{this.props.createdBy}</p>
+        <p>Priority Level: {this.props.priority}</p>
+        <p>Created By: {this.props.createdBy}</p>
+        <p>Assigned To: {this.props.assignedTo}</p>
       </div>
     )
   }
@@ -122,9 +153,11 @@ class Done extends React.Component {
   render() {
     return(
       <div className="doneList">
-        <h1>Done</h1>
+        <h2>Done</h2>
         <h4>{this.props.title}</h4>
-        <p>{this.props.createdBy}</p>
+        <p>Priority Level: {this.props.priority}</p>
+        <p>Created By: {this.props.createdBy}</p>
+        <p>Assigned To: {this.props.assignedTo}</p>
       </div>
     )
   }
@@ -132,5 +165,5 @@ class Done extends React.Component {
 
 ReactDOM.render(
   <KanBanPage url='http://localhost:3000/api' />,
-  document.getElementById('container')
+  document.getElementById('root')
 );

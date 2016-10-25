@@ -15,11 +15,35 @@ const saltRounds = 10;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
-app.get('/api',(req,res) =>{
-  db.Card.findAll()
-    .then(data =>{
-      res.json({data});
-    })
+app.get('/apiP',(req,res) =>{
+  db.Card.findAll({
+    where: {
+      status: 'Progress'
+    }
+  })
+  .then(data =>{
+    res.json({data});
+  })
+})
+app.get('/apiQ',(req,res) =>{
+  db.Card.findAll({
+    where: {
+      status: 'Queue'
+    }
+  })
+  .then(data =>{
+    res.json({data});
+  })
+})
+app.get('/apiD',(req,res) =>{
+  db.Card.findAll({
+    where: {
+      status: 'Done'
+    }
+  })
+  .then(data =>{
+    res.json({data});
+  })
 })
 
 

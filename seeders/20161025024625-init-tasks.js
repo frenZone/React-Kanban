@@ -13,7 +13,7 @@ module.exports = {
     },{
       title: 'Clean the table',
       priority: 'low',
-      status: 'Queue',
+      status: 'Progress',
       createdBy: 'Casey',
       assignedTo: 'Aaron',
       createdAt: new Date(),
@@ -29,7 +29,7 @@ module.exports = {
     },{
       title: 'Wipe Windows',
       priority: 'low',
-      status: 'Progress',
+      status: 'Done',
       createdBy: 'Joe',
       assignedTo: 'Ray',
       createdAt: new Date(),
@@ -37,7 +37,7 @@ module.exports = {
     },{
       title: 'Clean the white boards',
       priority: 'high',
-      status: 'Done',
+      status: 'Queue',
       createdBy: 'BB',
       assignedTo: 'Alan',
       createdAt: new Date(),
