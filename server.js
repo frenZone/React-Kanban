@@ -15,9 +15,16 @@ const saltRounds = 10;
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
+app.get('/api',(req,res) =>{
+  db.Card.findAll()
+    .then(data =>{
+      res.json({data});
+    })
+})
+
 
 app.listen(8080, function() {
-  console.log('server started');
+  console.log('server');
   db.sequelize.sync()
     .catch(err =>{
       res.json({

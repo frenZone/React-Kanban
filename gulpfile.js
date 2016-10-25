@@ -25,7 +25,7 @@ Gulp.task('redis-server', function() {
 // Browser-Sync
 Gulp.task('browser-sync', _ => {
   BrowserSync.init({
-    proxy: `localhost:8080/login`
+    proxy: `localhost:8080/`
   });
 });
 
