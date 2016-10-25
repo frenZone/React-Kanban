@@ -23,8 +23,8 @@ app.get('/apiP',(req,res) =>{
   })
   .then(data =>{
     res.json({data});
-  })
-})
+  });
+});
 app.get('/apiQ',(req,res) =>{
   db.Card.findAll({
     where: {
@@ -33,8 +33,8 @@ app.get('/apiQ',(req,res) =>{
   })
   .then(data =>{
     res.json({data});
-  })
-})
+  });
+});
 app.get('/apiD',(req,res) =>{
   db.Card.findAll({
     where: {
@@ -43,8 +43,8 @@ app.get('/apiD',(req,res) =>{
   })
   .then(data =>{
     res.json({data});
-  })
-})
+  });
+});
 
 
 app.listen(8080, function() {
