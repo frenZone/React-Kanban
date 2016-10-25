@@ -151,7 +151,7 @@ class Queue extends React.Component {
         <p>Assigned To: {this.props.assignedTo}</p>
         <form method='post' action='/moveToProgress'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button>in progress</button>
+          <button className='preventReload'>in progress</button>
         </form>
       </div>
     )
@@ -169,11 +169,11 @@ class Progress extends React.Component {
         <p>Assigned To: {this.props.assignedTo}</p>
         <form method='post' action='/moveToQueue'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button>queue</button>
+          <button className='preventReload'>queue</button>
         </form>
         <form method='post' action='/moveToDone'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button>done</button>
+          <button className='preventReload'>done</button>
         </form>
       </div>
     )
@@ -191,7 +191,7 @@ class Done extends React.Component {
         <p>Assigned To: {this.props.assignedTo}</p>
         <form method='post' action='/moveToProgress'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button>in progress</button>
+          <button className='preventReload'>in progress</button>
         </form>
       </div>
     )
