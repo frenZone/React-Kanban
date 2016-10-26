@@ -2,39 +2,14 @@ const express = require('express');
 const kanban = express.Router();
 const db = require('../models');
 
-kanban.route('/apiP')
+kanban.route('/api')
   .get((req,res) =>{
-    db.Card.findAll({
-      where: {
-        status: 'Progress'
-      }
-    })
-    .then(data =>{
-      res.json({data});
-    });
+    db.Card.findAll()
+      .then(data =>{
+        res.json({data});
+      });
   });
-kanban.route('/apiQ')
-  .get((req,res) =>{
-    db.Card.findAll({
-      where: {
-        status: 'Queue'
-      }
-    })
-    .then(data =>{
-      res.json({data});
-    });
-  });
-kanban.route('/apiD')
-  .get((req,res) =>{
-    db.Card.findAll({
-      where: {
-        status: 'Done'
-      }
-    })
-    .then(data =>{
-      res.json({data});
-    });
-  });
+
 kanban.route('/moveToProgress')
   .post((req,res) =>{
     db.Card.findById(req.body.id)

@@ -6,22 +6,15 @@ class KanBanPage extends React.Component {
     super();
 
     this.state = {
-      progress: [],
-      queue: [],
-      done: []
+      data: []
     }
     this.onKanBan = this.onKanBan.bind(this)
   }
 
   onKanBan(data) {
     const parsedData = JSON.parse(data.currentTarget.response).data
-    if(parsedData[0].status === 'Progress') {
-      this.setState({progress: parsedData});
-    } else if (parsedData[0].status === 'Queue') {
-      this.setState({queue: parsedData});
-    } else {
-      this.setState({done: parsedData});
-    }
+    console.log('parsedData',parsedData)
+    this.setState({data: parsedData})
   }
 
   onKanBanError(error) {
@@ -38,9 +31,7 @@ class KanBanPage extends React.Component {
   }
 
   componentWillMount() {
-    this.loadData(this.props.url + 'P');
-    this.loadData(this.props.url + 'Q');
-    this.loadData(this.props.url + 'D');
+    this.loadData(this.props.url);
   }
 
   render() {
@@ -55,19 +46,19 @@ class KanBanPage extends React.Component {
           </div>
           <div>
             <form method='post' action='/newTask' id='newInput'>
-              <input type='text' name='title'/>
-              <select name='priority' >
+              <input type='text' placeholder='title' name='title'/>
+              <select name='priority'>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
               </select>
-              <input type='text' name='createdBy'/>
-              <input type='text' name='assignedTo'/>
+              <input type='text' placeholder='Created By' name='createdBy'/>
+              <input type='text' placeholder='Assigned To' name='assignedTo'/>
               <button>Enter</button>
             </form>
           </div>
         </div>
-        <KanBanList queue={this.state.queue} progress={this.state.progress} done={this.state.done} />
+        <KanBanList data={this.state.data} />
       </div>
     );
   }
