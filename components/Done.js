@@ -2,9 +2,10 @@ import React from 'react';
 
 class Done extends React.Component {
   toggle() {
-    document.getElementById('editForm').className = 'visible'
+    document.getElementById(this.props.id).className = 'visible'
     document.getElementById('editButton').className = 'invisible'
   }
+
   render() {
     return(
       <div className="doneList">
@@ -14,14 +15,14 @@ class Done extends React.Component {
         <p>Assigned To: {this.props.assignedTo}</p>
         <form method='post' action='/moveToProgress'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button className='preventReload'>in progress</button>
+          <button className='preventReload'>In Progress</button>
         </form>
         <script>
 
         </script>
 
-        <form method='post' action='/editD' id='editForm' className='invisible'>
-          <input type='text' placeholder={this.props.id} name='id'/>
+        <form method='post' action='/editD' id={this.props.id} className='invisible'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
           <input type='text' placeholder={this.props.title} name='title'/>
           <input type='text' placeholder={this.props.priority} name='priority'/>
           <input type='text' placeholder={this.props.createdBy} name='createdBy'/>
@@ -29,6 +30,7 @@ class Done extends React.Component {
           <button className='preventReload'>Edit</button>
         </form>
         <button id='editButton' className='preventReload' onClick={this.toggle}>Edit</button>
+
         <form method='post' action='/delete'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <button type='submit'>Delete</button>

@@ -2,6 +2,11 @@ import React from 'react';
 
 
 class Progress extends React.Component {
+  toggle() {
+    document.getElementById('editForm').className = 'visible'
+    document.getElementById('editButton').className = 'invisible'
+  }
+
   formHandler(e) {
     e.preventDefault();
     console.log(e);
@@ -28,6 +33,17 @@ class Progress extends React.Component {
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <button type='submit'>Done</button>
         </form>
+
+        <form method='post' action='/editP' id={this.props.id} className='invisible'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <input type='text' placeholder={this.props.title} name='title'/>
+          <input type='text' placeholder={this.props.priority} name='priority'/>
+          <input type='text' placeholder={this.props.createdBy} name='createdBy'/>
+          <input type='text' placeholder={this.props.assignedTo} name='assignedTo'/>
+          <button className='preventReload'>Edit</button>
+        </form>
+        <button id='editButton' className='preventReload' onClick={this.toggle}>Edit</button>
+
         <form method='post' action='/delete'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <button type='submit'>Delete</button>
