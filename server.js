@@ -61,7 +61,8 @@ if (isDeveloping) {
 }
 
 app.listen(port, function() {
-  console.log('server started');
+  console.log(`==> 🌎 Listening on port ${port}. ` +
+    `Open up http://localhost:${port}/ in your browser.`);
   db.sequelize.sync()
     .catch(err =>{
       res.json({
