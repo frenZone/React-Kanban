@@ -1,8 +1,12 @@
-class Done extends React.Component {
+import React from 'react';
+
+
+class Queue extends React.Component {
 
   render() {
+    console.log(this.props);
     return(
-      <div className="doneList">
+      <div className="queueList">
         <h4>{this.props.title}</h4>
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
@@ -14,4 +18,6 @@ class Done extends React.Component {
       </div>
     )
   }
-export default Done;
+}
+
+export default Queue;
