@@ -1,5 +1,5 @@
 import React from 'react';
-
+import ReactDOM from 'react-dom';
 
 class Queue extends React.Component {
   constructor() {
@@ -18,6 +18,9 @@ class Queue extends React.Component {
 
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/edit')
+    oReq.onload = () => {
+      this.props.load();
+    }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}&title=${title}&priority=${priority}&createdBy=${createdBy}&assignedTo=${assignedTo}`);
   }
@@ -26,6 +29,9 @@ class Queue extends React.Component {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/delete')
+    oReq.onload = () => {
+      this.props.load();
+    }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}`)
   }
@@ -34,6 +40,9 @@ class Queue extends React.Component {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/moveToProgress')
+    oReq.onload = () => {
+      this.props.load();
+    }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}`)
   }

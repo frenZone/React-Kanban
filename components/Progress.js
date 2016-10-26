@@ -9,6 +9,7 @@ class Progress extends React.Component {
     this.deleteData = this.deleteData.bind(this);
     this.toQueue = this.toQueue.bind(this);
     this.toDone = this.toDone.bind(this);
+
   }
 
   editData(e) {
@@ -19,7 +20,10 @@ class Progress extends React.Component {
     const assignedTo = ReactDOM.findDOMNode(this.refs.assignedTo).value.trim();
 
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/edit')
+    oReq.open('POST','http://localhost:3000/edit');
+    oReq.onload = () => {
+      this.props.load();
+    }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}&title=${title}&priority=${priority}&createdBy=${createdBy}&assignedTo=${assignedTo}`);
   }
@@ -28,6 +32,9 @@ class Progress extends React.Component {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/delete')
+    oReq.onload = () => {
+      this.props.load();
+    }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}`)
   }
@@ -36,6 +43,9 @@ class Progress extends React.Component {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/moveToQueue')
+    oReq.onload = () => {
+      this.props.load();
+    }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}`)
   }
@@ -44,6 +54,9 @@ class Progress extends React.Component {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/moveToDone')
+    oReq.onload = () => {
+      this.props.load();
+    }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}`)
   }
@@ -56,16 +69,16 @@ class Progress extends React.Component {
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
-        <form method='post' action='/moveToQueue'>
+        <form>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <button onClick={this.toQueue}>Queue</button>
         </form>
-        <form method='post' action='/moveToDone'>
+        <form>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <button onClick={this.toDone}>Done</button>
         </form>
 
-        <form method='post' action='/edit' id={this.props.id}>
+        <form id={this.props.id}>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <input type='text' ref='title' placeholder={this.props.title} name='title'/>
           <input type='text' ref='priority' placeholder={this.props.priority} name='priority'/>

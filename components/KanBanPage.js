@@ -8,30 +8,26 @@ class KanBanPage extends React.Component {
     this.state = {
       data: []
     }
-    this.onKanBan = this.onKanBan.bind(this)
+    this.loadData = this.loadData.bind(this);
   }
 
-  onKanBan(data) {
-    const parsedData = JSON.parse(data.currentTarget.response).data
-    console.log('parsedData',parsedData)
-    this.setState({data: parsedData})
-  }
-
-  onKanBanError(error) {
-    console.error(error);
-  }
-
-  loadData(APIurl) {
+  loadData() {
     const oReq = new XMLHttpRequest();
-    oReq.addEventListener('load', this.onKanBan);
-    oReq.addEventListener('error', this.onKanBanError);
+    oReq.addEventListener('load', (data) => {
+      const parsedData = JSON.parse(data.currentTarget.response).data
+      this.setState({data: parsedData})
+    });
 
-    oReq.open('GET', APIurl);
+    oReq.addEventListener('error', (error) => {
+      console.error(error);
+    });
+
+    oReq.open('GET', this.props.url);
     oReq.send();
   }
 
   componentWillMount() {
-    this.loadData(this.props.url);
+    this.loadData();
   }
 
   render() {
@@ -58,7 +54,7 @@ class KanBanPage extends React.Component {
             </form>
           </div>
         </div>
-        <KanBanList data={this.state.data} />
+        <KanBanList data={this.state.data} load={this.loadData} />
       </div>
     );
   }

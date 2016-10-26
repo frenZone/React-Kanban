@@ -4,6 +4,12 @@ import Progress from './Progress';
 import Done from './Done';
 
 class KanBanList extends React.Component {
+  constructor() {
+    super();
+
+
+  }
+
 
 
   render() {
@@ -16,6 +22,7 @@ class KanBanList extends React.Component {
             createdBy={dataItem.createdBy}
             assignedTo={dataItem.assignedTo}
             id={dataItem.id}
+            load={this.props.load}
             key={dataItem.id}
           />
         )
@@ -31,6 +38,7 @@ class KanBanList extends React.Component {
             createdBy={dataItem.createdBy}
             assignedTo={dataItem.assignedTo}
             id={dataItem.id}
+            load={this.props.load}
             key={dataItem.id}
           />
         )
@@ -46,6 +54,7 @@ class KanBanList extends React.Component {
             createdBy={dataItem.createdBy}
             assignedTo={dataItem.assignedTo}
             id={dataItem.id}
+            load={this.props.load}
             key={dataItem.id}
           />
         )
