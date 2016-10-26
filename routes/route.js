@@ -97,3 +97,6 @@ kanban.route('/newTask')
     });
     res.redirect('/');
   });
+
+
+module.exports = kanban;

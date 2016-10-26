@@ -8,104 +8,60 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const db = require('./models');
+const kanban = require('./routes/route.js');
 // const config = require('./config/config.json');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
+const webpackMiddleware = require('webpack-dev-middleware');
+const webpackHotMiddleware = require('webpack-hot-middleware');
+const config = require('./webpack.config.js');
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('./public'));
 
-app.get('/apiP',(req,res) =>{
-  db.Card.findAll({
-    where: {
-      status: 'Progress'
-    }
-  })
-  .then(data =>{
-    res.json({data});
-  });
-});
-app.get('/apiQ',(req,res) =>{
-  db.Card.findAll({
-    where: {
-      status: 'Queue'
-    }
-  })
-  .then(data =>{
-    res.json({data});
-  });
-});
-app.get('/apiD',(req,res) =>{
-  db.Card.findAll({
-    where: {
-      status: 'Done'
-    }
-  })
-  .then(data =>{
-    res.json({data});
-  })
-})
-app.post('/moveToProgress',(req,res) =>{
-  db.Card.findById(req.body.id)
-    .then(card => {
-      card.update({
-        title: card.title,
-        priority: card.priority,
-        status: 'Progress',
-        createdBy: card.createdBy,
-        assignedTo: card.assignedTo
-      })
-      res.redirect('/');
-    })
-    .catch(err => {
-      console.error(err);
-    })
-})
-app.post('/moveToQueue',(req,res) =>{
-  db.Card.findById(req.body.id)
-    .then(card => {
-      card.update({
-        title: card.title,
-        priority: card.priority,
-        status: 'Queue',
-        createdBy: card.createdBy,
-        assignedTo: card.assignedTo
-      })
-      res.redirect('/');
-    })
-    .catch(err => {
-      console.error(err);
-    })
-})
-app.post('/moveToDone',(req,res) =>{
-  db.Card.findById(req.body.id)
-    .then(card => {
-      card.update({
-        title: card.title,
-        priority: card.priority,
-        status: 'Done',
-        createdBy: card.createdBy,
-        assignedTo: card.assignedTo
-      })
-      res.redirect('/');
-    })
-    .catch(err => {
-      console.error(err);
-    })
-})
-app.post('/newTask',(req,res) => {
-  db.Card.create({
-    title: req.body.title,
-    priority: req.body.priority,
-    status: 'Queue',
-    createdBy: req.body.createdBy,
-    assignedTo: req.body.assignedTo
-  })
-  res.redirect('/');
-})
+// Check to see what dev environment we are in
+const isDeveloping = process.env.NODE_ENV !== 'production';
+const port = isDeveloping ? 3000 : process.env.PORT;
 
-app.listen(8080, function() {
-  console.log('server');
+if (isDeveloping) {
+  app.set('host', 'http://localhost');
+  const compiler = webpack(config);
+  const middleware = webpackMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    contentBase: 'src',
+    stats: {
+      colors: true,
+      hash: false,
+      timings: true,
+      chunks: false,
+      chunkModules: false,
+      modules: false,
+    },
+  });
+  const response = (req, res) => {
+    res.write(middleware.fileSystem.readFileSync(path.resolve(__dirname, 'dist/index.html')));
+    res.end();
+  };
+
+  app.use(middleware);
+  app.use(webpackHotMiddleware(compiler));
+  app.use('/',kanban);
+  app.get('*', response);
+} else {
+  app.use(express.static(`${__dirname}/dist`));
+  app.use('/',kanban);
+  app.get('*', (req, res) => {
+    res.write(
+      fs.readFileSync(path.resolve(__dirname, 'dist/index.html'))
+    );
+  });
+}
+
+app.listen(port, function() {
+  console.log('server started');
   db.sequelize.sync()
     .catch(err =>{
       res.json({
