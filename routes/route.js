@@ -134,6 +134,7 @@ kanban.route('/editP')
 
 kanban.route('/editD')
   .post((req,res) =>{
+    console.log('req.body',req.body)
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
@@ -148,4 +149,17 @@ kanban.route('/editD')
         console.error(err);
       });
   });
+
+kanban.route('/delete')
+  .post((req,res) => {
+    console.log(req.body)
+    db.Card.findById(req.body.id)
+      .then(card =>{
+        card.destroy();
+        res.redirect('/');
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  })
 module.exports = kanban;

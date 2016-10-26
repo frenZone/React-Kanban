@@ -15,7 +15,6 @@ class KanBanPage extends React.Component {
 
   onKanBan(data) {
     const parsedData = JSON.parse(data.currentTarget.response).data
-    console.log(parsedData)
     if(parsedData[0].status === 'Progress') {
       this.setState({progress: parsedData});
     } else if (parsedData[0].status === 'Queue') {

@@ -4,7 +4,6 @@ import React from 'react';
 class Queue extends React.Component {
 
   render() {
-    console.log(this.props);
     return(
       <div className="queueList">
         <h4>{this.props.title}</h4>
@@ -14,6 +13,10 @@ class Queue extends React.Component {
         <form method='post' action='/moveToProgress'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <button className='preventReload'>in progress</button>
+        </form>
+        <form method='post' action='/delete'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <button type='submit'>Delete</button>
         </form>
       </div>
     )

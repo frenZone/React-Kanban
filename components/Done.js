@@ -21,7 +21,7 @@ class Done extends React.Component {
         </script>
 
         <form method='post' action='/editD' id='editForm' className='invisible'>
-          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <input type='text' placeholder={this.props.id} name='id'/>
           <input type='text' placeholder={this.props.title} name='title'/>
           <input type='text' placeholder={this.props.priority} name='priority'/>
           <input type='text' placeholder={this.props.createdBy} name='createdBy'/>
@@ -29,6 +29,10 @@ class Done extends React.Component {
           <button className='preventReload'>Edit</button>
         </form>
         <button id='editButton' className='preventReload' onClick={this.toggle}>Edit</button>
+        <form method='post' action='/delete'>
+          <input type='text' value={this.props.id} name='id' className='invisible'/>
+          <button type='submit'>Delete</button>
+        </form>
       </div>
     )
   }
