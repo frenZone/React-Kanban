@@ -5,9 +5,7 @@ import Done from './Done';
 
 
 class KanBanList extends React.Component {
-  constructor() {
-    super();
-  }
+
   render() {
     const QueueListNode = this.props.data.map((dataItem) => {
       if (dataItem.status === 'Queue') {
