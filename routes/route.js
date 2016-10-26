@@ -21,7 +21,7 @@ kanban.route('/moveToProgress')
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
         });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -38,7 +38,7 @@ kanban.route('/moveToQueue')
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
         });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -55,7 +55,7 @@ kanban.route('/moveToDone')
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
         });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -70,7 +70,7 @@ kanban.route('/newTask')
       createdBy: req.body.createdBy,
       assignedTo: req.body.assignedTo
     });
-    res.redirect('/');
+    res.json({success:true});
   });
 
 kanban.route('/edit')
@@ -83,7 +83,7 @@ kanban.route('/edit')
           createdBy: req.body.createdBy,
           assignedTo: req.body.assignedTo
         });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -96,7 +96,7 @@ kanban.route('/delete')
     db.Card.findById(req.body.id)
       .then(card =>{
         card.destroy();
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);

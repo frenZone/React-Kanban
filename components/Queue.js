@@ -14,7 +14,7 @@ class Queue extends React.Component {
           <button className='preventReload'>In Progress</button>
         </form>
 
-        <form method='post' action='/editQ' id={this.props.id}>
+        <form method='post' action='/edit' id={this.props.id}>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <input type='text' placeholder={this.props.title} name='title'/>
           <input type='text' placeholder={this.props.priority} name='priority'/>
