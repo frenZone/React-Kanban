@@ -3,6 +3,7 @@ import Queue from './Queue';
 import Progress from './Progress';
 import Done from './Done';
 
+
 class KanBanList extends React.Component {
   constructor() {
     super();

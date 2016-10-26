@@ -1,5 +1,6 @@
 import React from 'react';
 import KanBanList from './KanBanList';
+import ReactDOM from 'react-dom';
 
 class KanBanPage extends React.Component {
   constructor() {
@@ -9,6 +10,7 @@ class KanBanPage extends React.Component {
       data: []
     }
     this.loadData = this.loadData.bind(this);
+    this.newData = this.newData.bind(this);
   }
 
   loadData() {
@@ -30,6 +32,22 @@ class KanBanPage extends React.Component {
     this.loadData();
   }
 
+   newData(e) {
+    e.preventDefault();
+    const title = ReactDOM.findDOMNode(this.refs.title).value.trim();
+    const priority = ReactDOM.findDOMNode(this.refs.priority).value.trim();
+    const createdBy = ReactDOM.findDOMNode(this.refs.createdBy).value.trim();
+    const assignedTo = ReactDOM.findDOMNode(this.refs.assignedTo).value.trim();
+
+    const oReq = new XMLHttpRequest();
+    oReq.open('POST','http://localhost:3000/newTask')
+    oReq.onload = () => {
+      this.loadData();
+    }
+    oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    oReq.send(`id=${this.props.id}&title=${title}&priority=${priority}&createdBy=${createdBy}&assignedTo=${assignedTo}`);
+  }
+
   render() {
     return (
       <div>
@@ -42,15 +60,15 @@ class KanBanPage extends React.Component {
           </div>
           <div>
             <form method='post' action='/newTask' id='newInput'>
-              <input type='text' placeholder='title' name='title'/>
-              <select name='priority'>
+              <input ref='title' type='text' placeholder='title' name='title'/>
+              <select ref='priority' name='priority'>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
               </select>
-              <input type='text' placeholder='Created By' name='createdBy'/>
-              <input type='text' placeholder='Assigned To' name='assignedTo'/>
-              <button>Enter</button>
+              <input ref='createdBy' type='text' placeholder='Created By' name='createdBy'/>
+              <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo'/>
+              <button onClick={this.newData} >Enter</button>
             </form>
           </div>
         </div>
