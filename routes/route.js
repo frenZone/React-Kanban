@@ -21,7 +21,7 @@ kanban.route('/moveToProgress')
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
         });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -38,7 +38,7 @@ kanban.route('/moveToQueue')
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
         });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -55,7 +55,7 @@ kanban.route('/moveToDone')
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
         });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -70,10 +70,10 @@ kanban.route('/newTask')
       createdBy: req.body.createdBy,
       assignedTo: req.body.assignedTo
     });
-    res.redirect('/');
+    res.json({success:true});
   });
 
-kanban.route('/editQ')
+kanban.route('/edit')
   .post((req,res) =>{
     db.Card.findById(req.body.id)
       .then(card => {
@@ -83,42 +83,7 @@ kanban.route('/editQ')
           createdBy: req.body.createdBy,
           assignedTo: req.body.assignedTo
         });
-        res.redirect('/');
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
-
-kanban.route('/editP')
-  .post((req,res) =>{
-    db.Card.findById(req.body.id)
-      .then(card => {
-        card.update({
-          title: req.body.title,
-          priority: req.body.priority,
-          createdBy: req.body.createdBy,
-          assignedTo: req.body.assignedTo
-        });
-        res.redirect('/');
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
-
-kanban.route('/editD')
-  .post((req,res) =>{
-    console.log('req.body',req.body)
-    db.Card.findById(req.body.id)
-      .then(card => {
-        card.update({
-          title: req.body.title,
-          priority: req.body.priority,
-          createdBy: req.body.createdBy,
-          assignedTo: req.body.assignedTo
-        });
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -131,7 +96,7 @@ kanban.route('/delete')
     db.Card.findById(req.body.id)
       .then(card =>{
         card.destroy();
-        res.redirect('/');
+        res.json({success:true});
       })
       .catch(err => {
         console.error(err);

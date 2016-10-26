@@ -7,9 +7,7 @@ class KanBanList extends React.Component {
 
 
   render() {
-    console.log('props',this.props.data);
     const QueueListNode = this.props.data.map((dataItem) => {
-      console.log('dataItems',dataItem)
       if (dataItem.status === 'Queue') {
         return (
           <Queue

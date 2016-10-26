@@ -17,7 +17,7 @@ class Done extends React.Component {
 
         </script>
 
-        <form method='post' action='/editD' id={this.props.id} >
+        <form method='post' action='/edit' id={this.props.id} >
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <input type='text' placeholder={this.props.title} name='title'/>
           <input type='text' placeholder={this.props.priority} name='priority'/>
