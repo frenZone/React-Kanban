@@ -104,7 +104,6 @@ app.post('/newTask',(req,res) => {
   res.redirect('/');
 })
 
-
 app.listen(8080, function() {
   console.log('server');
   db.sequelize.sync()
