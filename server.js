@@ -103,7 +103,7 @@ app.post('/newTask',(req,res) => {
   })
   res.redirect('/');
 })
->>>>>>> bd927fda3b932285f133af365a47b45751877d52
+
 
 
 app.listen(8080, function() {
