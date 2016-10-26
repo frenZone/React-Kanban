@@ -25,6 +25,9 @@ h1 {
 .invisible {
   display: none;
 }
+#invisible {
+  display: none;
+}
 
 #newInput {
   @include flexParent();
