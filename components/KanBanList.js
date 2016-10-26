@@ -19,7 +19,7 @@ class KanBanList extends React.Component {
         />
       )
     })
-
+    console.log('QueueListNode', QueueListNode)
     const ProgressListNode = this.props.progress.map((dataItem) => {
       return (
         <Progress

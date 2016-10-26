@@ -56,7 +56,7 @@ class KanBanPage extends React.Component {
           <div>
             <form method='post' action='/newTask' id='newInput'>
               <input type='text' name='title'/>
-              <select name='priority'>
+              <select name='priority' >
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
