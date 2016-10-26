@@ -1,10 +1,6 @@
 import React from 'react';
 
 class Done extends React.Component {
-  toggle() {
-    document.getElementById(this.props.id).className = 'visible'
-    document.getElementById('editButton').className = 'invisible'
-  }
 
   render() {
     return(
@@ -21,7 +17,7 @@ class Done extends React.Component {
 
         </script>
 
-        <form method='post' action='/editD' id={this.props.id} className='invisible'>
+        <form method='post' action='/editD' id={this.props.id} >
           <input type='text' value={this.props.id} name='id' className='invisible'/>
           <input type='text' placeholder={this.props.title} name='title'/>
           <input type='text' placeholder={this.props.priority} name='priority'/>
@@ -29,7 +25,6 @@ class Done extends React.Component {
           <input type='text' placeholder={this.props.assignedTo} name='assignedTo'/>
           <button className='preventReload'>Edit</button>
         </form>
-        <button id='editButton' className='preventReload' onClick={this.toggle}>Edit</button>
 
         <form method='post' action='/delete'>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
