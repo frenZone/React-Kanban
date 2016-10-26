@@ -56,7 +56,11 @@ class KanBanPage extends React.Component {
           <div>
             <form method='post' action='/newTask' id='newInput'>
               <input type='text' name='title'/>
-              <input type='text' name='priority'/>
+              <select name='priority'>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+              </select>
               <input type='text' name='createdBy'/>
               <input type='text' name='assignedTo'/>
               <button>Enter</button>
