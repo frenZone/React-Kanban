@@ -75,6 +75,7 @@ kanban.route('/newTask')
 
 kanban.route('/edit')
   .post((req,res) =>{
+    console.log('req.body',req.body);
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
