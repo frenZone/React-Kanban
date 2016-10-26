@@ -73,43 +73,8 @@ kanban.route('/newTask')
     res.redirect('/');
   });
 
-kanban.route('/editQ')
+kanban.route('/edit')
   .post((req,res) =>{
-    db.Card.findById(req.body.id)
-      .then(card => {
-        card.update({
-          title: req.body.title,
-          priority: req.body.priority,
-          createdBy: req.body.createdBy,
-          assignedTo: req.body.assignedTo
-        });
-        res.redirect('/');
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
-
-kanban.route('/editP')
-  .post((req,res) =>{
-    db.Card.findById(req.body.id)
-      .then(card => {
-        card.update({
-          title: req.body.title,
-          priority: req.body.priority,
-          createdBy: req.body.createdBy,
-          assignedTo: req.body.assignedTo
-        });
-        res.redirect('/');
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
-
-kanban.route('/editD')
-  .post((req,res) =>{
-    console.log('req.body',req.body)
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
