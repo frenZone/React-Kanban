@@ -7,52 +7,55 @@ import Done from './Done';
 class KanBanList extends React.Component {
 
   render() {
-    const QueueListNode = this.props.data.map((dataItem) => {
-      if (dataItem.status === 'Queue') {
-        return (
-          <Queue
-            title={dataItem.title}
-            priority={dataItem.priority}
-            createdBy={dataItem.createdBy}
-            assignedTo={dataItem.assignedTo}
-            id={dataItem.id}
-            load={this.props.load}
-            key={dataItem.id}
-          />
-        )
-      }
+    const QueueListNode = this.props.data.filter(item => {
+      return item.status === 'Queue';
+    })
+    .map((dataItem) => {
+      return (
+        <Queue
+          title={dataItem.title}
+          priority={dataItem.priority}
+          createdBy={dataItem.createdBy}
+          assignedTo={dataItem.assignedTo}
+          id={dataItem.id}
+          load={this.props.load}
+          key={dataItem.id}
+        />
+      )
     })
 
-    const ProgressListNode = this.props.data.map((dataItem) => {
-      if (dataItem.status === 'Progress') {
-        return (
-          <Progress
-            title={dataItem.title}
-            priority={dataItem.priority}
-            createdBy={dataItem.createdBy}
-            assignedTo={dataItem.assignedTo}
-            id={dataItem.id}
-            load={this.props.load}
-            key={dataItem.id}
-          />
-        )
-      }
+    const ProgressListNode = this.props.data.filter(item => {
+      return item.status === 'Progress';
+    })
+    .map((dataItem) => {
+      return (
+        <Progress
+          title={dataItem.title}
+          priority={dataItem.priority}
+          createdBy={dataItem.createdBy}
+          assignedTo={dataItem.assignedTo}
+          id={dataItem.id}
+          load={this.props.load}
+          key={dataItem.id}
+        />
+      )
     })
 
-    const DoneListNode = this.props.data.map((dataItem) => {
-      if (dataItem.status === 'Done') {
-        return (
-          <Done
-            title={dataItem.title}
-            priority={dataItem.priority}
-            createdBy={dataItem.createdBy}
-            assignedTo={dataItem.assignedTo}
-            id={dataItem.id}
-            load={this.props.load}
-            key={dataItem.id}
-          />
-        )
-      }
+    const DoneListNode = this.props.data.filter(item => {
+      return item.status === 'Done';
+    })
+    .map((dataItem) => {
+      return (
+        <Done
+          title={dataItem.title}
+          priority={dataItem.priority}
+          createdBy={dataItem.createdBy}
+          assignedTo={dataItem.assignedTo}
+          id={dataItem.id}
+          load={this.props.load}
+          key={dataItem.id}
+        />
+      )
     })
 
     return (
