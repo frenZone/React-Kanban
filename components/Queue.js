@@ -55,10 +55,7 @@ class Queue extends React.Component {
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
-        <form method='post' action='/moveToProgress'>
-          <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button onClick={this.toProgress}>In Progress</button>
-        </form>
+        <button onClick={this.toProgress}>In Progress</button>
 
         <form method='post' action='/edit' id={this.props.id}>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
@@ -69,11 +66,7 @@ class Queue extends React.Component {
           <button onClick={this.editData}>Edit</button>
         </form>
 
-
-        <form method='post' action='/delete'>
-          <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button onClick={this.deleteData}>Delete</button>
-        </form>
+        <button onClick={this.deleteData}>Delete</button>
       </div>
     )
   }

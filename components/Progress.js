@@ -70,14 +70,8 @@ class Progress extends React.Component {
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
-        <form>
-          <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button onClick={this.toQueue}>Queue</button>
-        </form>
-        <form>
-          <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button onClick={this.toDone}>Done</button>
-        </form>
+        <button onClick={this.toQueue}>Queue</button>
+        <button onClick={this.toDone}>Done</button>
 
         <form id={this.props.id}>
           <input type='text' value={this.props.id} name='id' className='invisible'/>
@@ -88,10 +82,7 @@ class Progress extends React.Component {
           <button onClick={this.editData}>Edit</button>
         </form>
 
-        <form method='post' action='/delete'>
-          <input type='text' value={this.props.id} name='id' className='invisible'/>
-          <button type='submit' onClick={this.deleteData}>Delete</button>
-        </form>
+        <button type='submit' onClick={this.deleteData}>Delete</button>
       </div>
     )
   }
