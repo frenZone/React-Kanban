@@ -30,6 +30,7 @@ class Queue extends React.Component {
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/delete')
     oReq.onload = () => {
+      console.log('here');
       this.props.load();
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

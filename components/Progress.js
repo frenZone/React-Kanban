@@ -14,6 +14,7 @@ class Progress extends React.Component {
 
   editData(e) {
     e.preventDefault();
+
     const title = ReactDOM.findDOMNode(this.refs.title).value.trim();
     const priority = ReactDOM.findDOMNode(this.refs.priority).value.trim();
     const createdBy = ReactDOM.findDOMNode(this.refs.createdBy).value.trim();
