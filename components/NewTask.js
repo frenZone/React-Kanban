@@ -47,10 +47,10 @@ class NewTask extends React.Component {
         <button id='close-new-task' onClick={this.toggle} >x</button>
         <form method='post' action='/newTask' id='newInput'>
           <input ref='title' type='text' placeholder='title' name='title'/>
-          <select ref='priority' name='priority'>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
+          <select ref='priority' className={styles.priority}>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
           </select>
           <input ref='createdBy' type='text' placeholder='Created By' name='createdBy'/>
           <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo'/>

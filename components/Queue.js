@@ -30,7 +30,10 @@ class Queue extends React.Component {
     oReq.send(`id=${this.props.id}&title=${title}&priority=${priority}&createdBy=${createdBy}&assignedTo=${assignedTo}`);
 
     const formDiv = document.getElementById(`${this.props.id}`)
-    formDiv.className = styles.overlay;
+    formDiv.className = styles.invisible;
+
+    const toggle = document.getElementById(`toggle${this.props.id}`);
+    toggle.className = 'visible';
 
   }
 
@@ -61,7 +64,9 @@ class Queue extends React.Component {
 
   visible() {
     const formDiv = document.getElementById(`${this.props.id}`)
-    formDiv.className = 'visible';
+    formDiv.className = styles.visible;
+    const toggle = document.getElementById(`toggle${this.props.id}`);
+    toggle.className = styles.invisible;
   }
 
   render() {
@@ -73,16 +78,20 @@ class Queue extends React.Component {
         <p>Assigned To: {this.props.assignedTo}</p>
         <button onClick={this.toProgress}>In Progress</button>
 
-        <div className={styles.overlay} id={this.props.id}>
+        <div className={styles.invisible} id={this.props.id}>
           <form>
             <input type='text' ref='title' placeholder={this.props.title} name='title'/>
-            <input type='text' ref='priority' placeholder={this.props.priority} name='priority'/>
+            <select ref='priority' className={styles.priority}>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
             <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy'/>
             <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo'/>
             <button onClick={this.editData}>Edit</button>
           </form>
         </div>
-        <button onClick={this.visible}>Edit</button>
+        <button onClick={this.visible} id={'toggle' + this.props.id}>Edit</button>
 
         <button onClick={this.deleteData}>Delete</button>
       </div>
