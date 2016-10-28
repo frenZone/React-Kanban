@@ -51,7 +51,7 @@ class KanBanPage extends React.Component {
         </div>
         <div id={styles.newInput}>
           <div>
-            <button id='toggleInput' onClick={this.showNewForm}>New Task</button>
+            <button id='toggleInput' onClick={this.showNewForm} className={styles.button}>New Task</button>
           </div>
           <NewTask load={this.loadData}/>
         </div>

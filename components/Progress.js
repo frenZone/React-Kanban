@@ -13,6 +13,7 @@ class Progress extends React.Component {
     this.toQueue = this.toQueue.bind(this);
     this.toDone = this.toDone.bind(this);
     this.visible = this.visible.bind(this);
+    this.resetForm = this.resetForm.bind(this);
   }
 
   editData(e) {
@@ -37,6 +38,8 @@ class Progress extends React.Component {
 
     const toggle = document.getElementById(`toggle${this.props.id}`);
     toggle.className = 'visible';
+
+    this.resetForm();
 
   }
 
@@ -82,7 +85,11 @@ class Progress extends React.Component {
     const toggle = document.getElementById(`toggle${this.props.id}`);
     toggle.className = styles.invisible;
   }
-
+  resetForm() {
+    ReactDOM.findDOMNode(this.refs.title).value = ''
+    ReactDOM.findDOMNode(this.refs.createdBy).value = ''
+    ReactDOM.findDOMNode(this.refs.assignedTo).value = ''
+  }
 
   render() {
     return(
@@ -91,25 +98,27 @@ class Progress extends React.Component {
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
-        <button onClick={this.toQueue}>Queue</button>
-        <button onClick={this.toDone}>Done</button>
+        <div className={styles.moveButtons}>
+          <button onClick={this.toQueue} className={styles.button}>Queue</button>
+          <button onClick={this.toDone} className={styles.button}>Done</button>
+        </div>
 
         <div className={styles.invisible} id={this.props.id}>
           <form>
-            <input type='text' ref='title' placeholder={this.props.title} name='title'/>
+            <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.button}/>
             <select ref='priority' className={styles.priority}>
               <option value="High">High</option>
               <option value="Medium">Medium</option>
               <option value="Low">Low</option>
             </select>
-            <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy'/>
-            <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo'/>
-            <button onClick={this.editData}>Edit</button>
+            <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy' className={styles.button}/>
+            <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo' className={styles.button}/>
+            <button onClick={this.editData} className={styles.button}>Edit</button>
           </form>
         </div>
-        <button onClick={this.visible} id={'toggle' + this.props.id}>Edit</button>
+        <button onClick={this.visible} id={'toggle' + this.props.id} className={styles.button}>Edit</button>
 
-        <button type='submit' onClick={this.deleteData}>Delete</button>
+        <button type='submit' onClick={this.deleteData} className={styles.button}>Delete</button>
       </div>
     )
   }

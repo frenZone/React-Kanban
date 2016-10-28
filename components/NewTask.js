@@ -33,9 +33,9 @@ class NewTask extends React.Component {
     const button = document.getElementById('toggleInput');
     if (container.className === 'visible') {
       container.className = styles.invisible;
-      button.className = 'visible';
+      button.className = styles.button;
     } else {
-      container.className = 'visible';
+      container.className = styles.button;
       button.className = styles.invisible;
     }
   }
@@ -44,17 +44,17 @@ class NewTask extends React.Component {
   render() {
     return (
       <div id='new-task-container' className={styles.invisible}>
-        <button id='close-new-task' onClick={this.toggle} >x</button>
+        <button id='close-new-task' onClick={this.toggle} className={styles.button}>x</button>
         <form method='post' action='/newTask' id='newInput'>
-          <input ref='title' type='text' placeholder='title' name='title'/>
+          <input ref='title' type='text' placeholder='title' name='title' className={styles.button}/>
           <select ref='priority' className={styles.priority}>
             <option value="High">High</option>
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
           </select>
-          <input ref='createdBy' type='text' placeholder='Created By' name='createdBy'/>
-          <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo'/>
-          <button onClick={this.newData} >Enter</button>
+          <input ref='createdBy' type='text' placeholder='Created By' name='createdBy' className={styles.button}/>
+          <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo' className={styles.button}/>
+          <button onClick={this.newData} className={styles.button}>Enter</button>
         </form>
       </div>
     )
