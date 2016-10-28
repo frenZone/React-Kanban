@@ -20,8 +20,13 @@ kanban.route('/move')
           status: req.body.status,
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
+        })
+        .then(_=>{
+          db.Card.findAll()
+          .then(data => {
+            res.json({data});
+          });
         });
-        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -35,13 +40,18 @@ kanban.route('/newTask')
       status: 'Queue',
       createdBy: req.body.createdBy,
       assignedTo: req.body.assignedTo
+    })
+    .then(_=>{
+      db.Card.findAll()
+      .then(data => {
+        res.json({data});
+      });
     });
-    res.json({success:true});
+
   });
 
 kanban.route('/edit')
   .post((req,res) =>{
-    console.log('req.body',req.body);
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
@@ -49,8 +59,13 @@ kanban.route('/edit')
           priority: req.body.priority,
           createdBy: req.body.createdBy,
           assignedTo: req.body.assignedTo
+        })
+        .then(_=>{
+          db.Card.findAll()
+          .then(data => {
+            res.json({data});
+          });
         });
-        res.json({success:true});
       })
       .catch(err => {
         console.error(err);
@@ -59,14 +74,18 @@ kanban.route('/edit')
 
 kanban.route('/delete')
   .post((req,res) => {
-    console.log(req.body)
     db.Card.findById(req.body.id)
       .then(card =>{
-        card.destroy();
-        res.json({success:true});
+        card.destroy()
+        .then(_=>{
+          db.Card.findAll()
+          .then(data => {
+            res.json({data});
+          });
+        });
       })
       .catch(err => {
         console.error(err);
-      })
-  })
+      });
+  });
 module.exports = kanban;

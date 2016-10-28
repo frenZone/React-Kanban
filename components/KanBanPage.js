@@ -65,9 +65,9 @@ KanBanPage.defaultProps = {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
+
   const { kanbanReducer } = state;
-  console.log(kanbanReducer);
+
   return {
     data: kanbanReducer.toJS()
   }

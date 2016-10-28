@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import {receiveTasks} from '../actions/kanbanActions';
 
 class Queue extends React.Component {
   constructor() {
@@ -19,7 +21,8 @@ class Queue extends React.Component {
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/edit')
     oReq.onload = () => {
-      this.props.load();
+      const {dispatch} = this.props;
+      dispatch(receiveTasks(JSON.parse(oReq.response).data))
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}&title=${title}&priority=${priority}&createdBy=${createdBy}&assignedTo=${assignedTo}`);
@@ -30,8 +33,9 @@ class Queue extends React.Component {
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/delete')
     oReq.onload = () => {
-      console.log('here');
-      this.props.load();
+      const {dispatch} = this.props;
+     dispatch(receiveTasks(JSON.parse(oReq.response).data))
+
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}`)
@@ -42,7 +46,8 @@ class Queue extends React.Component {
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/move')
     oReq.onload = () => {
-      this.props.load();
+      const {dispatch} = this.props;
+      dispatch(receiveTasks(JSON.parse(oReq.response).data))
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}&status=Progress`)
@@ -72,4 +77,4 @@ class Queue extends React.Component {
   }
 }
 
-export default Queue;
+export default connect()(Queue);
