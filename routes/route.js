@@ -10,48 +10,14 @@ kanban.route('/api')
       });
   });
 
-kanban.route('/moveToProgress')
+kanban.route('/move')
   .post((req,res) =>{
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
           title: card.title,
           priority: card.priority,
-          status: 'Progress',
-          createdBy: card.createdBy,
-          assignedTo: card.assignedTo
-        });
-        res.json({success:true});
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
-kanban.route('/moveToQueue')
-  .post((req,res) =>{
-    db.Card.findById(req.body.id)
-      .then(card => {
-        card.update({
-          title: card.title,
-          priority: card.priority,
-          status: 'Queue',
-          createdBy: card.createdBy,
-          assignedTo: card.assignedTo
-        });
-        res.json({success:true});
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  });
-kanban.route('/moveToDone')
-  .post((req,res) =>{
-    db.Card.findById(req.body.id)
-      .then(card => {
-        card.update({
-          title: card.title,
-          priority: card.priority,
-          status: 'Done',
+          status: req.body.status,
           createdBy: card.createdBy,
           assignedTo: card.assignedTo
         });

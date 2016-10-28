@@ -11,7 +11,10 @@ h1 {
   text-align: center; }
 
 .queueList, .progressList, .doneList {
-  text-align: center; }
+  text-align: center;
+  border: 1px solid black;
+  margin: 5px;
+}
 
 .invisible {
   display: none; }
