@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { receiveTasks } from '../actions/kanbanActions';
 import KanBanList from './KanBanList';
 import ReactDOM from 'react-dom';
 import NewTask from './NewTask';
@@ -6,10 +8,6 @@ import NewTask from './NewTask';
 class KanBanPage extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      data: []
-    }
     this.loadData = this.loadData.bind(this);
     this.showNewForm = this.showNewForm.bind(this);
   }
@@ -17,8 +15,10 @@ class KanBanPage extends React.Component {
   loadData() {
     const oReq = new XMLHttpRequest();
     oReq.addEventListener('load', (data) => {
-      const parsedData = JSON.parse(data.currentTarget.response).data
-      this.setState({data: parsedData})
+    const parsedData = JSON.parse(data.currentTarget.response).data;
+    const { dispatch } = this.props;
+    dispatch(receiveTasks(parsedData));
+
     });
 
     oReq.addEventListener('error', (error) => {
@@ -38,16 +38,11 @@ class KanBanPage extends React.Component {
     e.preventDefault();
     const container = document.getElementById('new-task-container');
     const button = document.getElementById('toggleInput');
-    console.log('class',container.className);
-    if (container.className === 'visible') {
-      container.className = 'invisible';
-    } else {
       container.className = 'visible';
-      button.className = 'invisible'
-    }
+      button.className = 'invisible';
   }
 
-  render() {
+  render(){
     return (
       <div>
         <div id='header'>
@@ -59,7 +54,7 @@ class KanBanPage extends React.Component {
           </div>
           <NewTask load={this.loadData}/>
         </div>
-        <KanBanList data={this.state.data} load={this.loadData} />
+        <KanBanList data={this.props.data} load={this.loadData} />
       </div>
     );
   }
@@ -69,8 +64,15 @@ KanBanPage.defaultProps = {
   data: React.PropTypes.array
 }
 
-KanBanPage.defaultProps = {
-  data: []
+const mapStateToProps = (state, ownProps) => {
+  console.log(state);
+  const { kanbanReducer } = state;
+  console.log(kanbanReducer);
+  return {
+    data: kanbanReducer.toJS()
+  }
 }
+export default connect(
+  mapStateToProps
+)(KanBanPage);
 
-export default KanBanPage;
