@@ -1,0 +1,16 @@
+@mixin flexParent() {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+
+#listHolder {
+  @include flexParent();
+  width: 970px;
+  margin: 0 auto;
+}
+
+.list {
+  flex: 0 0 33%;
+  text-align: center;
+}

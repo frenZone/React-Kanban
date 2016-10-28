@@ -4,6 +4,7 @@ import { receiveTasks } from '../actions/kanbanActions';
 import KanBanList from './KanBanList';
 import ReactDOM from 'react-dom';
 import NewTask from './NewTask';
+import styles from './page.scss';
 
 class KanBanPage extends React.Component {
   constructor() {
@@ -39,16 +40,16 @@ class KanBanPage extends React.Component {
     const container = document.getElementById('new-task-container');
     const button = document.getElementById('toggleInput');
       container.className = 'visible';
-      button.className = 'invisible';
+      button.className = styles.invisible;
   }
 
   render(){
     return (
       <div>
-        <div id='header'>
+        <div id={styles.header}>
           <h1>KanBan Page</h1>
         </div>
-        <div id='newInput'>
+        <div id={styles.newInput}>
           <div>
             <button id='toggleInput' onClick={this.showNewForm}>New Task</button>
           </div>

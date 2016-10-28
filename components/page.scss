@@ -1,0 +1,23 @@
+@mixin flexParent() {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#newInput {
+  @include flexParent();
+  width: 150px;
+  justify-content: center;
+  margin: auto;
+  div {
+    flex: 0 0 100%;
+    text-align: center;
+  }
+}
+
+#header {
+  text-align: center;
+}
+
+.invisible {
+  display: none;
+}

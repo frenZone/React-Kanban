@@ -2,7 +2,7 @@ import React from 'react';
 import Queue from './Queue';
 import Progress from './Progress';
 import Done from './Done';
-
+import styles from './list.scss';
 
 class KanBanList extends React.Component {
 
@@ -59,16 +59,16 @@ class KanBanList extends React.Component {
     })
 
     return (
-      <div id='listHolder'>
-        <div id='Queue' className='list'>
+      <div id={styles.listHolder}>
+        <div id='Queue' className={styles.list}>
           <h1>Queue</h1>
           {QueueListNode}
         </div>
-        <div id='Progress' className='list'>
+        <div id='Progress' className={styles.list}>
           <h1>In Progress</h1>
           {ProgressListNode}
         </div>
-        <div id='Done' className='list'>
+        <div id='Done' className={styles.list}>
           <h1>Done</h1>
           {DoneListNode}
         </div>

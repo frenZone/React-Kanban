@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styles from './newTask.scss';
 
 class NewTask extends React.Component {
   constructor() {
@@ -31,18 +32,18 @@ class NewTask extends React.Component {
     const container = document.getElementById('new-task-container');
     const button = document.getElementById('toggleInput');
     if (container.className === 'visible') {
-      container.className = 'invisible';
+      container.className = styles.invisible;
       button.className = 'visible';
     } else {
       container.className = 'visible';
-      button.className = 'invisible'
+      button.className = styles.invisible;
     }
   }
 
 
   render() {
     return (
-      <div id='new-task-container' className='invisible'>
+      <div id='new-task-container' className={styles.invisible}>
         <button id='close-new-task' onClick={this.toggle} >x</button>
         <form method='post' action='/newTask' id='newInput'>
           <input ref='title' type='text' placeholder='title' name='title'/>

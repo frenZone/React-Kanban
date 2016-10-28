@@ -1,0 +1,26 @@
+.list {
+  text-align: center;
+  background-color: lightgreen;
+}
+
+.overlay {
+  visibility: hidden;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width:100%;
+  height:100%;
+  text-align:center;
+  z-index: 1000;
+ }
+
+.blanket {
+  background-color:#111;
+  opacity: 0.65;
+  filter:alpha(opacity=65);
+  position:absolute;
+  z-index: 9001;
+  top:0px;
+  left:0px;
+  width:100%;
+}
