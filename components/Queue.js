@@ -40,12 +40,12 @@ class Queue extends React.Component {
   toProgress(e) {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/moveToProgress')
+    oReq.open('POST','http://localhost:3000/move')
     oReq.onload = () => {
       this.props.load();
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    oReq.send(`id=${this.props.id}`)
+    oReq.send(`id=${this.props.id}&status=Progress`)
   }
 
   render() {
