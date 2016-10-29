@@ -23,6 +23,8 @@ const kanbanReducer = (state=initialState, action) => {
       const newList = state.toJS().List.map(task => {
         if (task.index === action.data.index) {
           task.showEditForm = action.data.bool;
+        } else {
+          task.showEditForm = false;
         }
         return task;
       })
