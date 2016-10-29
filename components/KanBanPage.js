@@ -40,10 +40,6 @@ class KanBanPage extends React.Component {
 
     const { dispatch } = this.props;
     dispatch(toggleNewForm(true))
-    // const container = document.getElementById('new-task-container');
-    // const button = document.getElementById('toggleInput');
-    // container.className = 'visible';
-    // button.className = styles.invisible;
   }
 
   render(){
@@ -80,7 +76,6 @@ KanBanPage.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
 
   const { kanbanReducer } = state;
-  console.log('showNewForm',kanbanReducer.get('showNewForm'));
   return {
     data: kanbanReducer.get('List').toJS(),
     showNewForm: kanbanReducer.get('showNewForm')

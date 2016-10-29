@@ -6,7 +6,11 @@ const initialState = Map({List: List(), showNewForm: false});
 const kanbanReducer = (state=initialState, action) => {
   switch(action.type) {
     case RECEIVE_TASKS:
-      return state.set('List',List(action.data));
+      const newData = action.data.map(task => {
+        task.showEditForm = false;
+        return task;
+      })
+      return state.set('List',List(newData));
     case TOGGLE_NEW_FORM:
       return state.set('showNewForm',action.data);
     default:
