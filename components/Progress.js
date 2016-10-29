@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {receiveTasks,toggleEditForm} from '../actions/kanbanActions';
-import styles from './items.scss';
+import styles from './sass/items.scss';
 
 
 class Progress extends React.Component {

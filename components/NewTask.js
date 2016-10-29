@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {receiveTasks, toggleNewForm} from '../actions/kanbanActions';
-import styles from './newTask.scss';
+import styles from './sass/newTask.scss';
 
 class NewTask extends React.Component {
   constructor() {

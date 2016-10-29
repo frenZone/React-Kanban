@@ -4,7 +4,7 @@ import { receiveTasks, toggleNewForm } from '../actions/kanbanActions';
 import KanBanList from './KanBanList';
 import ReactDOM from 'react-dom';
 import NewTask from './NewTask';
-import styles from './page.scss';
+import styles from './sass/page.scss';
 
 class KanBanPage extends React.Component {
   constructor() {
@@ -26,7 +26,7 @@ class KanBanPage extends React.Component {
       console.error(error);
     });
 
-    oReq.open('GET', this.props.url);
+    oReq.open('GET', 'http://localhost:3000/api');
     oReq.send();
   }
 
