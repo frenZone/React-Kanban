@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import {receiveTasks} from '../actions/kanbanActions';
+import {receiveTasks, toggleEditForm} from '../actions/kanbanActions';
 import styles from './items.scss';
 
 class Queue extends React.Component {
@@ -10,7 +10,8 @@ class Queue extends React.Component {
     this.editData = this.editData.bind(this);
     this.deleteData = this.deleteData.bind(this);
     this.toProgress = this.toProgress.bind(this);
-    this.visible = this.visible.bind(this);
+    this.showForm = this.showForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
     this.resetForm = this.resetForm.bind(this);
   }
 
@@ -29,12 +30,6 @@ class Queue extends React.Component {
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}&title=${title}&priority=${priority}&createdBy=${createdBy}&assignedTo=${assignedTo}`);
-
-    const formDiv = document.getElementById(`${this.props.id}`)
-    formDiv.className = styles.invisible;
-
-    const toggle = document.getElementById(`toggle${this.props.id}`);
-    toggle.className = 'visible';
 
     this.resetForm();
 
@@ -65,12 +60,17 @@ class Queue extends React.Component {
     oReq.send(`id=${this.props.id}&status=Progress`)
   }
 
-  visible() {
-    const formDiv = document.getElementById(`${this.props.id}`)
-    formDiv.className = styles.visible;
-    const toggle = document.getElementById(`toggle${this.props.id}`);
-    toggle.className = styles.invisible;
+  showForm() {
+    const { dispatch } = this.props;
+    dispatch(toggleEditForm(true,this.props.index));
   }
+
+  hideForm(e) {
+    e.preventDefault();
+    const { dispatch } = this.props;
+    dispatch(toggleEditForm(false,this.props.index));
+  }
+
   resetForm() {
     ReactDOM.findDOMNode(this.refs.title).value = ''
     ReactDOM.findDOMNode(this.refs.createdBy).value = ''
@@ -78,6 +78,30 @@ class Queue extends React.Component {
   }
 
   render() {
+    let renderedElement;
+    if(this.props.showEditForm) {
+      renderedElement = (
+        <div >
+          <form className={styles.editForm}>
+            <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.button}/>
+            <select ref='priority' className={styles.priority}>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+            <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy' className={styles.button}/>
+            <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo' className={styles.button}/>
+
+            <button onClick={this.hideForm} className={styles.button}>x</button>
+            <button onClick={this.editData} className={styles.button}>Edit</button>
+          </form>
+        </div>
+      )
+    } else {
+      renderedElement = (
+        <button onClick={this.showForm} className={styles.button}>Edit</button>
+      )
+    }
     return(
       <div className={styles.list}>
         <h4>{this.props.title}</h4>
@@ -87,22 +111,7 @@ class Queue extends React.Component {
         <div className={styles.moveButtons}>
           <button onClick={this.toProgress} className={styles.button}>In Progress</button>
         </div>
-
-        <div className={styles.invisible} id={this.props.id}>
-          <form>
-            <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.button}/>
-            <select ref='priority' className={styles.priority}>
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
-            </select>
-            <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy' className={styles.button}/>
-            <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo' className={styles.button}/>
-            <button onClick={this.editData} className={styles.button}>Edit</button>
-          </form>
-        </div>
-        <button onClick={this.visible} id={'toggle' + this.props.id} className={styles.button}>Edit</button>
-
+        { renderedElement }
         <button onClick={this.deleteData} className={styles.button}>Delete</button>
       </div>
     )
@@ -110,3 +119,4 @@ class Queue extends React.Component {
 }
 
 export default connect()(Queue);
+

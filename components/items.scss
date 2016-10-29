@@ -4,20 +4,10 @@
   font-family: 'Schoolbell', cursive;
 }
 
-
-.invisible {
-  display: none;
-}
-
 .priority {
   width: 150px;
   font-family: 'Schoolbell', cursive;
   font-size: 15px;
-}
-
-.visible {
-  width: 150px;
-  margin: auto;
 }
 
 .moveButtons {
@@ -28,4 +18,9 @@
   font-family: 'Schoolbell', cursive;
   font-size: 15px;
   margin: 3px;
+}
+
+.editForm {
+  width: 160px;
+  margin: auto;
 }

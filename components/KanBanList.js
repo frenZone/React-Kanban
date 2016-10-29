@@ -18,7 +18,8 @@ class KanBanList extends React.Component {
           createdBy={dataItem.createdBy}
           assignedTo={dataItem.assignedTo}
           id={dataItem.id}
-          load={this.props.load}
+          index={dataItem.index}
+          showEditForm={dataItem.showEditForm}
           key={dataItem.id}
         />
       )
@@ -35,7 +36,8 @@ class KanBanList extends React.Component {
           createdBy={dataItem.createdBy}
           assignedTo={dataItem.assignedTo}
           id={dataItem.id}
-          load={this.props.load}
+          index={dataItem.index}
+          showEditForm={dataItem.showEditForm}
           key={dataItem.id}
         />
       )
@@ -52,7 +54,8 @@ class KanBanList extends React.Component {
           createdBy={dataItem.createdBy}
           assignedTo={dataItem.assignedTo}
           id={dataItem.id}
-          load={this.props.load}
+          index={dataItem.index}
+          showEditForm={dataItem.showEditForm}
           key={dataItem.id}
         />
       )

@@ -10,7 +10,7 @@ class KanBanPage extends React.Component {
   constructor() {
     super();
     this.loadData = this.loadData.bind(this);
-    this.showNewForm = this.showNewForm.bind(this);
+    this.show = this.show.bind(this);
   }
 
   loadData() {
@@ -35,7 +35,7 @@ class KanBanPage extends React.Component {
   }
 
 
-  showNewForm(e) {
+  show(e) {
     e.preventDefault();
 
     const { dispatch } = this.props;
@@ -47,7 +47,7 @@ class KanBanPage extends React.Component {
     if (!this.props.showNewForm) {
       renderedElement = (
         <div>
-          <button id='toggleInput' onClick={this.showNewForm} className={styles.button}>New Task</button>
+          <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
         </div>
       )
     } else {
