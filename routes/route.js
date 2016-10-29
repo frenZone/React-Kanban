@@ -5,7 +5,7 @@ const validate = require('./middleware');
 
 kanban.route('/api')
   .get((req,res) =>{
-    db.Card.findAll({order: 'priority DESC'})
+    db.Card.findAll({order: 'priority DESC' })
       .then(data =>{
         res.json({data});
       });
@@ -23,7 +23,7 @@ kanban.route('/move')
           assignedTo: card.assignedTo
         })
         .then(_=>{
-          db.Card.findAll()
+          db.Card.findAll({order: 'priority DESC' })
           .then(data => {
             res.json({data});
           });
@@ -43,7 +43,7 @@ kanban.route('/newTask')
       assignedTo: req.body.assignedTo
     })
     .then(_=>{
-      db.Card.findAll()
+      db.Card.findAll({order: 'priority DESC' })
       .then(data => {
         res.json({data});
       });
@@ -62,7 +62,7 @@ kanban.route('/edit')
           assignedTo: req.body.assignedTo
         })
         .then(_=>{
-          db.Card.findAll()
+          db.Card.findAll({order: 'priority DESC' })
           .then(data => {
             res.json({data});
           });
@@ -79,7 +79,7 @@ kanban.route('/delete')
       .then(card =>{
         card.destroy()
         .then(_=>{
-          db.Card.findAll()
+          db.Card.findAll({order: 'priority DESC' })
           .then(data => {
             res.json({data});
           });

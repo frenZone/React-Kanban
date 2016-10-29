@@ -91,6 +91,14 @@ class Progress extends React.Component {
   }
 
   render() {
+    let priority;
+    if (this.props.priority === 3) {
+      priority = 'High';
+    } else if (this.props.priority === 2) {
+      priority = 'Medium';
+    } else {
+      priority = 'Low';
+    }
     let renderedElement;
     if (this.props.showEditForm) {
       renderedElement = (
@@ -98,9 +106,9 @@ class Progress extends React.Component {
           <form className={styles.editForm}>
             <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.button}/>
             <select ref='priority' className={styles.priority}>
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
+              <option value='3'>High</option>
+              <option value='2'>Medium</option>
+              <option value='1'>Low</option>
             </select>
             <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy' className={styles.button}/>
             <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo' className={styles.button}/>
@@ -124,7 +132,7 @@ class Progress extends React.Component {
     return(
       <div className={styles.list}>
         <h4>{this.props.title}</h4>
-        <p>Priority Level: {this.props.priority}</p>
+        <p>Priority Level: {priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
 

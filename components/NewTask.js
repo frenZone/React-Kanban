@@ -48,9 +48,9 @@ class NewTask extends React.Component {
         <form method='post' action='/newTask' id='newInput'>
           <input ref='title' type='text' placeholder='title' name='title' className={styles.button}/>
           <select ref='priority' className={styles.priority}>
-            <option value=3>High</option>
-            <option value=2>Medium</option>
-            <option value=1>Low</option>
+            <option value='3'>High</option>
+            <option value='2'>Medium</option>
+            <option value='1'>Low</option>
           </select>
           <input ref='createdBy' type='text' placeholder='Created By' name='createdBy' className={styles.button}/>
           <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo' className={styles.button}/>

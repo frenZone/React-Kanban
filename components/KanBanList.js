@@ -60,6 +60,10 @@ class KanBanList extends React.Component {
         />
       )
     })
+    console.log('q',QueueListNode);
+    console.log('p',ProgressListNode);
+    console.log('d',DoneListNode);
+
 
     return (
       <div id={styles.listHolder}>

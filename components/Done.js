@@ -77,6 +77,14 @@ class Done extends React.Component {
 
 
   render() {
+    let priority;
+    if (this.props.priority === 3) {
+      priority = 'High';
+    } else if (this.props.priority === 2) {
+      priority = 'Medium';
+    } else {
+      priority = 'Low';
+    }
     let renderedElement;
     if(this.props.showEditForm) {
       renderedElement = (
@@ -109,7 +117,7 @@ class Done extends React.Component {
     return(
       <div className={styles.list}>
         <h4>{this.props.title}</h4>
-        <p>Priority Level: {this.props.priority}</p>
+        <p>Priority Level: {priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
 
