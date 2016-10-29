@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveTasks } from '../actions/kanbanActions';
+import { receiveTasks, toggleNewForm } from '../actions/kanbanActions';
 import KanBanList from './KanBanList';
 import ReactDOM from 'react-dom';
 import NewTask from './NewTask';
@@ -37,25 +37,37 @@ class KanBanPage extends React.Component {
 
   showNewForm(e) {
     e.preventDefault();
-    const container = document.getElementById('new-task-container');
-    const button = document.getElementById('toggleInput');
-      container.className = 'visible';
-      button.className = styles.invisible;
+
+    const { dispatch } = this.props;
+    dispatch(toggleNewForm(true))
+    // const container = document.getElementById('new-task-container');
+    // const button = document.getElementById('toggleInput');
+    // container.className = 'visible';
+    // button.className = styles.invisible;
   }
 
   render(){
+    let renderedElement;
+    if (!this.props.showNewForm) {
+      renderedElement = (
+        <div>
+          <button id='toggleInput' onClick={this.showNewForm} className={styles.button}>New Task</button>
+        </div>
+      )
+    } else {
+      renderedElement = (
+        <NewTask />
+      )
+    }
     return (
       <div id={styles.page}>
         <div id={styles.header}>
           <h1>KanBan Page</h1>
         </div>
         <div id={styles.newInput}>
-          <div>
-            <button id='toggleInput' onClick={this.showNewForm} className={styles.button}>New Task</button>
-          </div>
-          <NewTask load={this.loadData}/>
+          { renderedElement }
         </div>
-        <KanBanList data={this.props.data} load={this.loadData} />
+        <KanBanList data={this.props.data} />
       </div>
     );
   }
@@ -68,9 +80,10 @@ KanBanPage.defaultProps = {
 const mapStateToProps = (state, ownProps) => {
 
   const { kanbanReducer } = state;
-
+  console.log('showNewForm',kanbanReducer.get('showNewForm'));
   return {
-    data: kanbanReducer.toJS()
+    data: kanbanReducer.get('List').toJS(),
+    showNewForm: kanbanReducer.get('showNewForm')
   }
 }
 export default connect(

@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {connect} from 'react-redux';
+import {receiveTasks, toggleNewForm} from '../actions/kanbanActions';
 import styles from './newTask.scss';
 
 class NewTask extends React.Component {
@@ -20,7 +22,8 @@ class NewTask extends React.Component {
     const oReq = new XMLHttpRequest();
     oReq.open('POST','http://localhost:3000/newTask')
     oReq.onload = () => {
-      this.props.load();
+      const {dispatch} = this.props;
+      dispatch(receiveTasks(JSON.parse(oReq.response).data));
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     oReq.send(`id=${this.props.id}&title=${title}&priority=${priority}&createdBy=${createdBy}&assignedTo=${assignedTo}`);
@@ -29,21 +32,14 @@ class NewTask extends React.Component {
   }
 
   toggle() {
-    const container = document.getElementById('new-task-container');
-    const button = document.getElementById('toggleInput');
-    if (container.className === 'visible') {
-      container.className = styles.invisible;
-      button.className = styles.button;
-    } else {
-      container.className = styles.button;
-      button.className = styles.invisible;
-    }
+    //dispatch here
+    const { dispatch } = this.props;
+    dispatch(toggleNewForm(false));
   }
-
 
   render() {
     return (
-      <div id='new-task-container' className={styles.invisible}>
+      <div id='new-task-container'>
         <button id='close-new-task' onClick={this.toggle} className={styles.button}>x</button>
         <form method='post' action='/newTask' id='newInput'>
           <input ref='title' type='text' placeholder='title' name='title' className={styles.button}/>
@@ -61,5 +57,4 @@ class NewTask extends React.Component {
   }
 }
 
-export default NewTask;
-
+export default connect()(NewTask);
