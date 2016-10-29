@@ -45,7 +45,7 @@ class KanBanPage extends React.Component {
 
   render(){
     return (
-      <div>
+      <div id={styles.page}>
         <div id={styles.header}>
           <h1>KanBan Page</h1>
         </div>

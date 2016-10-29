@@ -20,7 +20,6 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static('./public'));
 
 // Check to see what dev environment we are in
 const isDeveloping = process.env.NODE_ENV !== 'production';
