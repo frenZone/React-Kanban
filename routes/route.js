@@ -5,9 +5,7 @@ const validate = require('./middleware');
 
 kanban.route('/api')
   .get((req,res) =>{
-    //assign numbers to priority level
-    //order by the numbers
-    db.Card.findAll({order: 'priority'})
+    db.Card.findAll({order: 'priority DESC'})
       .then(data =>{
         res.json({data});
       });

@@ -4,7 +4,7 @@ module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Cards', [{
       title: 'Take out the trash',
-      priority: 'Medium',
+      priority: 2,
       status: 'Queue',
       createdBy: 'Renee',
       assignedTo: 'JP',
@@ -12,7 +12,7 @@ module.exports = {
       updatedAt: new Date()
     },{
       title: 'Clean the table',
-      priority: 'Low',
+      priority: 1,
       status: 'Progress',
       createdBy: 'Casey',
       assignedTo: 'Aaron',
@@ -20,7 +20,7 @@ module.exports = {
       updatedAt: new Date()
     },{
       title: 'Vacum',
-      priority: 'low',
+      priority: 1,
       status: 'Progress',
       createdBy: 'Bryan',
       assignedTo: 'Marta',
@@ -28,7 +28,7 @@ module.exports = {
       updatedAt: new Date()
     },{
       title: 'Wipe Windows',
-      priority: 'Low',
+      priority: 3,
       status: 'Done',
       createdBy: 'Joe',
       assignedTo: 'Ray',
@@ -36,7 +36,7 @@ module.exports = {
       updatedAt: new Date()
     },{
       title: 'Clean the white boards',
-      priority: 'High',
+      priority: 3,
       status: 'Queue',
       createdBy: 'BB',
       assignedTo: 'Alan',
