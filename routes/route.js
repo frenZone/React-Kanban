@@ -1,10 +1,13 @@
 const express = require('express');
 const kanban = express.Router();
 const db = require('../models');
+const validate = require('./middleware');
 
 kanban.route('/api')
   .get((req,res) =>{
-    db.Card.findAll()
+    //assign numbers to priority level
+    //order by the numbers
+    db.Card.findAll({order: 'priority'})
       .then(data =>{
         res.json({data});
       });
@@ -33,7 +36,7 @@ kanban.route('/move')
       });
   });
 kanban.route('/newTask')
-  .post((req,res) => {
+  .post(validate.newTask, (req,res) => {
     db.Card.create({
       title: req.body.title,
       priority: req.body.priority,
@@ -51,7 +54,7 @@ kanban.route('/newTask')
   });
 
 kanban.route('/edit')
-  .post((req,res) =>{
+  .post(validate.editTask, (req,res) =>{
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({

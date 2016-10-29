@@ -97,7 +97,13 @@ class Done extends React.Component {
       )
     } else {
       renderedElement = (
-        <button onClick={this.showForm} className={styles.button}>Edit</button>
+        <div>
+          <div className={styles.moveButtons}>
+            <button onClick={this.toProgress} className={styles.button} >{'<'}</button>
+          </div>
+          <button onClick={this.showForm} className={styles.button}>Edit</button>
+          <button onClick={this.deleteData} className={styles.button}>Delete</button>
+        </div>
       )
     }
     return(
@@ -106,13 +112,9 @@ class Done extends React.Component {
         <p>Priority Level: {this.props.priority}</p>
         <p>Created By: {this.props.createdBy}</p>
         <p>Assigned To: {this.props.assignedTo}</p>
-        <div className={styles.moveButtons}>
-          <button onClick={this.toProgress} className={styles.button} >In Progress</button>
-        </div>
 
         {renderedElement}
 
-        <button onClick={this.deleteData} className={styles.button}>Delete</button>
       </div>
     )
   }
