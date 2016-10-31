@@ -5,7 +5,7 @@ const validate = require('./middleware');
 
 kanban.route('/api')
   .get((req,res) =>{
-    db.Card.findAll({order: 'priority DESC' })
+    db.Card.findAll({ order: [['priority', 'DESC']] })
       .then(data =>{
         res.json({data});
       });
