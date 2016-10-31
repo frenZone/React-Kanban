@@ -19,8 +19,8 @@ $font-color: white;
 #header {
   text-align: center;
   font-family: 'Walter Turncoat', cursive;
-  font-size: 20px;
   // color: $font-color;
+  font-size: 1.5em;
 }
 
 .button {
@@ -29,5 +29,6 @@ $font-color: white;
 }
 
 #page {
-
+  width: 970px;
+  margin: 0 auto;
 }

@@ -6,9 +6,9 @@ import {Link} from 'react-router';
 class NavBar extends React.Component {
   render() {
     return (
-      <ul role='nav'>
-        <li><Link to='/about'>About</Link></li>
-        <li><Link to='/'>Home</Link></li>
+      <ul role='nav' className={styles.nav}>
+        <li><Link to='/' className={styles.li}>Home</Link></li>
+        <li><Link to='/about' className={styles.li}>About</Link></li>
       </ul>
     )
   }

@@ -1,0 +1,33 @@
+.header {
+  width: 970px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 3em;
+  font-family: 'Walter Turncoat', cursive;
+}
+
+.description {
+  font-family: 'Schoolbell', cursive;
+}
+
+#who {
+  text-align: left;
+}
+
+#paragraph {
+  text-align: left;
+}
+
+#link {
+  font-size: 25px;
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  &:hover {
+    transform: scale(1.1);
+    transition-duration: .5s;
+  }
+}
