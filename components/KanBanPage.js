@@ -57,7 +57,7 @@ class KanBanPage extends React.Component {
       renderedElement = (
         <div>
           <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
-          <p>{this.props.message}</p>
+          <p id={styles.errorMsg}>{this.props.message}</p>
         </div>
       )
 
