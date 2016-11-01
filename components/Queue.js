@@ -38,7 +38,7 @@ class Queue extends React.Component {
       )
     } else {
       renderedElement = (
-        <div>
+        <div className={styles.item}>
           <h3>{this.props.title}</h3>
           <p>Priority Level: {priority}</p>
           <p>Created By: {this.props.createdBy}</p>
