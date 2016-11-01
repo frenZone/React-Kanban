@@ -34,7 +34,7 @@ kanban.route('/move')
       });
   });
 kanban.route('/newTask')
-  .post(validate.newTask, (req,res) => {
+  .post(validate.newTask,validate.characterLimit, (req,res) => {
     db.Card.create({
       title: req.body.title,
       priority: req.body.priority,

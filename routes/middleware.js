@@ -12,6 +12,18 @@ const newTask = (req,res,next) => {
   }
 };
 
+const characterLimit = (req,res,next) => {
+  console.log('hit');
+  if (req.body.title.length > 254 ||
+    req.body.createdBy.length > 254 ||
+    req.body.assignedTo.length > 254
+    ) {
+    res.json({error:'Surpassed character limit of 255'});
+  } else {
+    next();
+  }
+};
+
 const editTask = (req,res,next) => {
   Card.findById(req.body.id)
     .then(task => {
@@ -40,5 +52,6 @@ const editTask = (req,res,next) => {
 
 module.exports = {
   newTask,
-  editTask
+  editTask,
+  characterLimit
 };
