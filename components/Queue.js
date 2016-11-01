@@ -39,6 +39,11 @@ class Queue extends React.Component {
     } else {
       renderedElement = (
         <div>
+          <h3>{this.props.title}</h3>
+          <p>Priority Level: {priority}</p>
+          <p>Created By: {this.props.createdBy}</p>
+          <p>Assigned To: {this.props.assignedTo}</p>
+
           <div className={styles.buttonsContainer}>
             <MoveProgressButton id={this.props.id} arrow={'>'} />
           </div>
@@ -52,10 +57,6 @@ class Queue extends React.Component {
     }
     return(
       <div className={styles.list}>
-        <h4>{this.props.title}</h4>
-        <p>Priority Level: {priority}</p>
-        <p>Created By: {this.props.createdBy}</p>
-        <p>Assigned To: {this.props.assignedTo}</p>
 
         { renderedElement }
 

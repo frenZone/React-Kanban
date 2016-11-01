@@ -40,6 +40,11 @@ class Progress extends React.Component {
     } else {
       renderedElement = (
         <div>
+          <h3>{this.props.title}</h3>
+          <p>Priority Level: {priority}</p>
+          <p>Created By: {this.props.createdBy}</p>
+          <p>Assigned To: {this.props.assignedTo}</p>
+
           <div className={styles.buttonsContainer}>
             <MoveQueueButton id={this.props.id} />
             <MoveDoneButton id={this.props.id} />
@@ -53,10 +58,6 @@ class Progress extends React.Component {
     }
     return(
       <div className={styles.list}>
-        <h4>{this.props.title}</h4>
-        <p>Priority Level: {priority}</p>
-        <p>Created By: {this.props.createdBy}</p>
-        <p>Assigned To: {this.props.assignedTo}</p>
 
         {renderedElement}
 
