@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import {receiveTasks, toggleNewForm, showErrorMessage, message} from '../actions/kanbanActions';
+import {receiveTasks, toggleNewForm} from '../actions/kanbanActions';
 import styles from './sass/newTask.scss';
 
 class NewTask extends React.Component {
@@ -10,7 +10,6 @@ class NewTask extends React.Component {
 
     this.newData = this.newData.bind(this);
     this.toggle = this.toggle.bind(this);
-
   }
 
   newData(e) {
@@ -21,13 +20,11 @@ class NewTask extends React.Component {
     const assignedTo = ReactDOM.findDOMNode(this.refs.assignedTo).value.trim();
 
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/newTask');
+    oReq.open('POST','http://localhost:3000/newTask')
     oReq.onload = () => {
-      console.log('error message',JSON.parse(oReq.response).error)
-      if (JSON.parse(oReq.response).error) {
-        const {dispatch} = this.props;
-        dispatch(showErrorMessage(true));
-        dispatch(message(JSON.parse(oReq.response).error));
+      if (!JSON.parse(oReq.response).data) {
+        //provide a message when they don't complete all fields
+        console.log(JSON.parse(oReq.response).data)
       } else {
         const {dispatch} = this.props;
         dispatch(receiveTasks(JSON.parse(oReq.response).data));
@@ -47,7 +44,6 @@ class NewTask extends React.Component {
   render() {
     return (
       <div className={styles.form}>
-        <button onClick={this.toggle} className={styles.button}>x</button>
         <form method='post' action='/newTask' id='newInput'>
           <input ref='title' type='text' placeholder='title' name='title' className={styles.input}/>
           <select ref='priority' className={styles.priority}>
@@ -57,8 +53,10 @@ class NewTask extends React.Component {
           </select>
           <input ref='createdBy' type='text' placeholder='Created By' name='createdBy' className={styles.input}/>
           <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo' className={styles.input}/>
-          <button onClick={this.newData} className={styles.button}>Enter</button>
+
         </form>
+        <button onClick={this.toggle} className={styles.button}>x</button>
+        <button onClick={this.newData} form='newInput' className={styles.button}>Enter</button>
       </div>
     )
   }
