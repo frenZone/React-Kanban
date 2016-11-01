@@ -11,6 +11,7 @@ class KanBanPage extends React.Component {
     super();
     this.loadData = this.loadData.bind(this);
     this.show = this.show.bind(this);
+
   }
 
   loadData() {
@@ -26,7 +27,7 @@ class KanBanPage extends React.Component {
       console.error(error);
     });
 
-    oReq.open('GET', 'http://localhost:3000/api');
+    oReq.open('GET', `/api`);
     oReq.send();
   }
 
@@ -74,7 +75,7 @@ class KanBanPage extends React.Component {
         <div id={styles.newInput}>
           { renderedElement }
         </div>
-        <KanBanList data={this.props.data} />
+        <KanBanList data={this.props.data} url={this.url} />
       </div>
     );
   }

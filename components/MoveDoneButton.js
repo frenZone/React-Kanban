@@ -12,7 +12,7 @@ class MoveDoneButton extends React.Component {
   toDone(e) {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/move')
+    oReq.open('POST',`/move`)
     oReq.onload = () => {
       const {dispatch} = this.props;
       dispatch(receiveTasks(JSON.parse(oReq.response).data))
@@ -30,5 +30,5 @@ class MoveDoneButton extends React.Component {
   }
 }
 
-export default connect()(MoveDoneButton);
 
+export default connect()(MoveDoneButton);

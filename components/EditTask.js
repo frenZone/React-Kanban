@@ -26,7 +26,7 @@ class EditTask extends React.Component {
     const assignedTo = ReactDOM.findDOMNode(this.refs.assignedTo).value.trim();
 
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/edit')
+    oReq.open('POST',`/edit`)
     oReq.onload = () => {
       const {dispatch} = this.props;
       dispatch(receiveTasks(JSON.parse(oReq.response).data))
@@ -76,5 +76,3 @@ class EditTask extends React.Component {
 }
 
 export default connect()(EditTask);
-
-

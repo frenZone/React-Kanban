@@ -1,4 +1,5 @@
 const Card = require('../models').Card;
+const maxInputLength = 255;
 
 const newTask = (req,res,next) => {
   if (req.body.title === '' ||
@@ -13,11 +14,12 @@ const newTask = (req,res,next) => {
 };
 
 const characterLimit = (req,res,next) => {
-  console.log('hit');
-  if (req.body.title.length > 254 ||
-    req.body.createdBy.length > 254 ||
-    req.body.assignedTo.length > 254
-    ) {
+  if ([req.body.title.length,
+      req.body.createdBy.length,
+      req.body.assignedTo.length
+      ].some(length => {
+        return length > maxInputLength
+      })) {
     res.json({error:'Surpassed character limit of 255'});
   } else {
     next();

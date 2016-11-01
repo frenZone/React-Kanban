@@ -7,7 +7,12 @@ import {
   MESSAGE
 } from '../actions/kanbanActions';
 
-const initialState = Map({List: List(), showNewForm: false, showErrorMessage: false, message: null});
+const initialState = Map({
+  List: List(),
+  showNewForm: false,
+  showErrorMessage: false,
+  message: null
+});
 
 const kanbanReducer = (state=initialState, action) => {
   switch(action.type) {

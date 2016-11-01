@@ -20,7 +20,7 @@ class NewTask extends React.Component {
     const assignedTo = ReactDOM.findDOMNode(this.refs.assignedTo).value.trim();
 
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/newTask')
+    oReq.open('POST',`/newTask`)
     oReq.onload = () => {
       if (!JSON.parse(oReq.response).data) {
         const {dispatch} = this.props;

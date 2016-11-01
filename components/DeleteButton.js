@@ -12,7 +12,7 @@ class DeleteButton extends React.Component {
   deleteData(e) {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/delete')
+    oReq.open('POST',`/delete`)
     oReq.onload = () => {
       const {dispatch} = this.props;
       dispatch(receiveTasks(JSON.parse(oReq.response).data))
@@ -31,4 +31,3 @@ class DeleteButton extends React.Component {
 }
 
 export default connect()(DeleteButton);
-

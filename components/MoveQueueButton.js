@@ -12,7 +12,7 @@ class MoveQueueButton extends React.Component {
   toQueue(e) {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
-    oReq.open('POST','http://localhost:3000/move')
+    oReq.open('POST','/move')
     oReq.onload = () => {
       const {dispatch} = this.props;
       dispatch(receiveTasks(JSON.parse(oReq.response).data))
