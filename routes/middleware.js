@@ -6,11 +6,11 @@ const newTask = (req,res,next) => {
     req.body.createdBy === '' ||
     req.body.assignedTo === ''
     ) {
-    res.json({data:false})
+    res.json({error:'Please fill out all fields'});
   } else {
     next();
   }
-}
+};
 
 const editTask = (req,res,next) => {
   Card.findById(req.body.id)
@@ -33,11 +33,12 @@ const editTask = (req,res,next) => {
       res.json({
         success:false,
         error: e
-      })
-    })
-}
+      });
+    });
+};
+
 
 module.exports = {
   newTask,
   editTask
-}
+};

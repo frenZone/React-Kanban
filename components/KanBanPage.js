@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveTasks, toggleNewForm } from '../actions/kanbanActions';
+import { receiveTasks, toggleNewForm, showErrorMessage, message} from '../actions/kanbanActions';
 import KanBanList from './KanBanList';
 import ReactDOM from 'react-dom';
 import NewTask from './NewTask';
@@ -39,17 +39,30 @@ class KanBanPage extends React.Component {
     e.preventDefault();
 
     const { dispatch } = this.props;
-    dispatch(toggleNewForm(true))
+    dispatch(toggleNewForm(true));
+    dispatch(showErrorMessage(false));
+    dispatch(message(null));
   }
 
   render(){
+    console.log(this.props.showErrorMessage)
+    console.log(this.props.message)
     let renderedElement;
-    if (!this.props.showNewForm) {
+
+    if (!this.props.showNewForm && !this.props.showErrorMessage) {
       renderedElement = (
         <div>
           <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
         </div>
       )
+    } else if(this.props.showErrorMessage){
+      renderedElement = (
+        <div>
+          <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
+          <p>{this.props.message}</p>
+        </div>
+      )
+
     } else {
       renderedElement = (
         <NewTask />
@@ -78,7 +91,9 @@ const mapStateToProps = (state, ownProps) => {
   const { kanbanReducer } = state;
   return {
     data: kanbanReducer.get('List').toJS(),
-    showNewForm: kanbanReducer.get('showNewForm')
+    showNewForm: kanbanReducer.get('showNewForm'),
+    showErrorMessage: kanbanReducer.get('showErrorMessage'),
+    message : kanbanReducer.get('message')
   }
 }
 export default connect(
