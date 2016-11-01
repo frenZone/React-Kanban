@@ -55,17 +55,21 @@ class EditTask extends React.Component {
     return (
       <div>
         <form className={styles.editForm}>
-            <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.button}/>
-            <select ref='priority' className={styles.priority}>
-              <option value='3'>High</option>
-              <option value='2'>Medium</option>
-              <option value='1'>Low</option>
-            </select>
-            <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy' className={styles.button}/>
-            <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo' className={styles.button}/>
-            <button onClick={this.hideForm} className={styles.button}>x</button>
-            <button onClick={this.editData} className={styles.button}>Edit</button>
-          </form>
+          <div>Title</div>
+          <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.input}/>
+          <div>Priority</div>
+          <select ref='priority' className={styles.priority}>
+            <option value='3'>High</option>
+            <option value='2'>Medium</option>
+            <option value='1'>Low</option>
+          </select>
+          <div>Created By</div>
+          <input type='text' ref='createdBy' placeholder={this.props.createdBy} name='createdBy' className={styles.input}/>
+          <div>Assigned To</div>
+          <input type='text' ref='assignedTo' placeholder={this.props.assignedTo} name='assignedTo' className={styles.input}/>
+          <button onClick={this.hideForm} className={styles.button}>x</button>
+          <button onClick={this.editData} className={styles.button}>Edit</button>
+        </form>
       </div>
     )
   }

@@ -26,7 +26,11 @@ $font-color: white;
 .button {
   font-size: 15px;
   font-family: 'Schoolbell', cursive;
+  &:hover {
+    cursor: pointer;
+  }
 }
+
 
 #page {
   width: 970px;
