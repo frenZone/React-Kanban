@@ -45,8 +45,6 @@ class KanBanPage extends React.Component {
   }
 
   render(){
-    console.log(this.props.showErrorMessage)
-    console.log(this.props.message)
     let renderedElement;
 
     if (!this.props.showNewForm && !this.props.showErrorMessage) {

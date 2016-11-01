@@ -32,7 +32,6 @@ const kanbanReducer = (state=initialState, action) => {
       });
       return state.set('List',List(newList));
     case SHOW_ERROR_MESSAGE:
-      console.log('action.data',action.data)
       return state.set('showErrorMessage',action.data);
     case MESSAGE:
       return state.set('message',action.data);

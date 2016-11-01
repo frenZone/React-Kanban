@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import {receiveTasks, toggleNewForm} from '../actions/kanbanActions';
+import {receiveTasks, toggleNewForm, showErrorMessage, message} from '../actions/kanbanActions';
 import styles from './sass/newTask.scss';
 
 class NewTask extends React.Component {
@@ -23,8 +23,9 @@ class NewTask extends React.Component {
     oReq.open('POST','http://localhost:3000/newTask')
     oReq.onload = () => {
       if (!JSON.parse(oReq.response).data) {
-        //provide a message when they don't complete all fields
-        console.log(JSON.parse(oReq.response).data)
+        const {dispatch} = this.props;
+        dispatch(showErrorMessage(true));
+        dispatch(message(JSON.parse(oReq.response).error));
       } else {
         const {dispatch} = this.props;
         dispatch(receiveTasks(JSON.parse(oReq.response).data));
