@@ -43,17 +43,17 @@ class NewTask extends React.Component {
 
   render() {
     return (
-      <div id='new-task-container'>
-        <button id='close-new-task' onClick={this.toggle} className={styles.button}>x</button>
+      <div className={styles.form}>
+        <button onClick={this.toggle} className={styles.button}>x</button>
         <form method='post' action='/newTask' id='newInput'>
-          <input ref='title' type='text' placeholder='title' name='title' className={styles.button}/>
+          <input ref='title' type='text' placeholder='title' name='title' className={styles.input}/>
           <select ref='priority' className={styles.priority}>
             <option value='3'>High</option>
             <option value='2'>Medium</option>
             <option value='1'>Low</option>
           </select>
-          <input ref='createdBy' type='text' placeholder='Created By' name='createdBy' className={styles.button}/>
-          <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo' className={styles.button}/>
+          <input ref='createdBy' type='text' placeholder='Created By' name='createdBy' className={styles.input}/>
+          <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo' className={styles.input}/>
           <button onClick={this.newData} className={styles.button}>Enter</button>
         </form>
       </div>

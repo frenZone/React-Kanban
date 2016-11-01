@@ -10,7 +10,7 @@
   font-size: 15px;
 }
 
-.moveButtons {
+.buttonsContainer {
   display: flex;
   flex-flow: row-wrap;
   justify-content: center;
@@ -23,6 +23,15 @@
   font-family: 'Schoolbell', cursive;
   font-size: 15px;
   margin: 3px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.input {
+  font-family: 'Schoolbell', cursive;
+  font-size: 15px;
+  margin: 3px;
 }
 
 .editForm {
@@ -30,11 +39,4 @@
   margin: auto;
 }
 
-.bottomButtons {
-  display: flex;
-  flex-flow: row-wrap;
-  justify-content: center;
-  div {
-    flex: 0 0 1%;
-  }
-}
+

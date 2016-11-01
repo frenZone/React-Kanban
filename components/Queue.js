@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import {receiveTasks, toggleEditForm} from '../actions/kanbanActions';
+import {receiveTasks} from '../actions/kanbanActions';
 import styles from './sass/items.scss';
 import EditTask from './EditTask';
 import EditButton from './EditButton';
@@ -39,11 +39,11 @@ class Queue extends React.Component {
     } else {
       renderedElement = (
         <div>
-          <div className={styles.moveButtons}>
+          <div className={styles.buttonsContainer}>
             <MoveProgressButton id={this.props.id} arrow={'>'} />
           </div>
 
-          <div className={styles.bottomButtons}>
+          <div className={styles.buttonsContainer}>
             <EditButton index={this.props.index} />
             <DeleteButton id={this.props.id} />
           </div>

@@ -8,4 +8,19 @@
 .button {
   font-size: 15px;
   font-family: 'Schoolbell', cursive;
+  margin: 3px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.input {
+  font-size: 15px;
+  font-family: 'Schoolbell', cursive;
+  margin: 3px;
+}
+
+.form {
+  padding: 20px 30px;
+  background-color: lightgreen;
 }

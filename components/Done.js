@@ -41,11 +41,11 @@ class Done extends React.Component {
     } else {
       renderedElement = (
         <div>
-          <div className={styles.moveButtons}>
+          <div className={styles.buttonsContainer}>
             <MoveProgressButton id={this.props.id} arrow={'<'}/>
           </div>
 
-          <div className={styles.bottomButtons}>
+          <div className={styles.buttonsContainer}>
             <EditButton index={this.props.index} />
             <DeleteButton id={this.props.id} />
           </div>
