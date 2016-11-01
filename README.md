@@ -8,7 +8,7 @@
 In your command line within the repository you cloned:
 - `npm install` to install all dependencies for the project
 - `psql` to enter Postgres
-- your username is on the left side of '=#' *keep note of this username for creating your config.json file
+- your username is on the left side of `=#` *keep note of this username for creating your config.json file
 - `CREATE DATABASE react_kanban;` to initialize your database
 - `\c react_kanban` to enter into your database
 - in another terminal pane, run the command `touch config/config.json`
