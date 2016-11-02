@@ -3,6 +3,7 @@ export const TOGGLE_NEW_FORM = 'TOGGLE_NEW_FORM';
 export const TOGGLE_EDIT_FORM = 'TOGGLE_EDIT_FORM';
 export const SHOW_ERROR_MESSAGE =  'SHOW_ERROR_MESSAGE';
 export const MESSAGE = 'MESSAGE';
+export const LOGIN = 'LOGIN';
 
 export const receiveTasks = (data) => {
   return {
@@ -38,3 +39,10 @@ export const message = (string) => {
     data: string
   };
 };
+
+export const login = (user) => {
+  return {
+    type: LOGIN,
+    data: user
+  }
+}

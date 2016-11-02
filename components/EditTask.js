@@ -25,6 +25,8 @@ class EditTask extends React.Component {
     const createdBy = ReactDOM.findDOMNode(this.refs.createdBy).value.trim();
     const assignedTo = ReactDOM.findDOMNode(this.refs.assignedTo).value.trim();
 
+
+
     const oReq = new XMLHttpRequest();
     oReq.open('POST',`/edit`)
     oReq.onload = () => {
@@ -52,8 +54,9 @@ class EditTask extends React.Component {
     } else {
       priority = 'Low';
     }
-    return (
-      <div>
+    let renderedElement;
+    if(this.props.user) {
+      renderedElement = (
         <form className={styles.editForm}>
           <div>Title</div>
           <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.input}/>
@@ -70,9 +73,30 @@ class EditTask extends React.Component {
           <button onClick={this.hideForm} className={styles.button}>x</button>
           <button onClick={this.editData} className={styles.button}>Edit</button>
         </form>
+      )
+    } else {
+      renderedElement = (
+        <div>
+          <h3>Must be signed in to Edit</h3>
+          <button onClick={this.hideForm} className={styles.button}>x</button>
+        </div>
+      )
+    }
+    return (
+      <div>
+        {renderedElement}
       </div>
     )
   }
 }
 
-export default connect()(EditTask);
+const mapStateToProps = (state, ownProps) => {
+
+  const { kanbanReducer } = state;
+  return {
+    user: kanbanReducer.get('login')
+  }
+}
+export default connect(
+  mapStateToProps
+)(EditTask);

@@ -4,14 +4,16 @@ import {
   TOGGLE_NEW_FORM,
   TOGGLE_EDIT_FORM,
   SHOW_ERROR_MESSAGE,
-  MESSAGE
+  MESSAGE,
+  LOGIN
 } from '../actions/kanbanActions';
 
 const initialState = Map({
   List: List(),
   showNewForm: false,
   showErrorMessage: false,
-  message: null
+  message: null,
+  login: null
 });
 
 const kanbanReducer = (state=initialState, action) => {
@@ -23,8 +25,10 @@ const kanbanReducer = (state=initialState, action) => {
         return task;
       });
       return state.set('List',List(newData));
+
     case TOGGLE_NEW_FORM:
       return state.set('showNewForm',action.data);
+
     case TOGGLE_EDIT_FORM:
 
       const newList = state.toJS().List.map(task => {
@@ -36,10 +40,16 @@ const kanbanReducer = (state=initialState, action) => {
         return task;
       });
       return state.set('List',List(newList));
+
     case SHOW_ERROR_MESSAGE:
       return state.set('showErrorMessage',action.data);
+
     case MESSAGE:
       return state.set('message',action.data);
+
+    case LOGIN:
+      return state.set('login',action.data);
+
     default:
       return state;
   }

@@ -2,6 +2,8 @@ const express = require('express');
 const kanban = express.Router();
 const db = require('../models');
 const validate = require('./middleware');
+const passport = require('passport');
+
 
 kanban.route('/api')
   .get((req,res) =>{
@@ -12,7 +14,7 @@ kanban.route('/api')
   });
 
 kanban.route('/move')
-  .post(validate.authentication,(req,res) =>{
+  .post((req,res) =>{
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
@@ -34,7 +36,7 @@ kanban.route('/move')
       });
   });
 kanban.route('/newTask')
-  .post(validate.authentication, validate.newTask,validate.characterLimit, (req,res) => {
+  .post(validate.newTask,validate.characterLimit, (req,res) => {
     db.Card.create({
       title: req.body.title,
       priority: req.body.priority,
@@ -52,7 +54,7 @@ kanban.route('/newTask')
   });
 
 kanban.route('/edit')
-  .post(validate.authentication, validate.editTask, (req,res) =>{
+  .post(validate.editTask, (req,res) =>{
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
@@ -74,7 +76,7 @@ kanban.route('/edit')
   });
 
 kanban.route('/delete')
-  .post(validate.authentication, (req,res) => {
+  .post((req,res) => {
     db.Card.findById(req.body.id)
       .then(card =>{
         card.destroy()
@@ -92,6 +94,7 @@ kanban.route('/delete')
 
 kanban.route('/login')
   .post((req,res,next) => {
+    console.log('here')
     passport.authenticate('local', (err, user, info) => {
       if (err) {
         return next(err);
@@ -111,7 +114,7 @@ kanban.route('/login')
           }
         });
       }
-    })
+    }) (req, res, next);
   });
 
 

@@ -47,7 +47,6 @@ class KanBanPage extends React.Component {
 
   render(){
     let renderedElement;
-
     if (!this.props.showNewForm && !this.props.showErrorMessage) {
       renderedElement = (
         <div>
@@ -92,7 +91,8 @@ const mapStateToProps = (state, ownProps) => {
     data: kanbanReducer.get('List').toJS(),
     showNewForm: kanbanReducer.get('showNewForm'),
     showErrorMessage: kanbanReducer.get('showErrorMessage'),
-    message : kanbanReducer.get('message')
+    message: kanbanReducer.get('message'),
+    user: kanbanReducer.get('login')
   }
 }
 export default connect(

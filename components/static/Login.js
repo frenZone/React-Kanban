@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
-import {receiveTasks, toggleNewForm, showErrorMessage, message} from '../../actions/kanbanActions';
+import {login} from '../../actions/kanbanActions';
 import styles from '../sass/login.scss';
 
 class Login extends React.Component {
@@ -20,13 +20,16 @@ class Login extends React.Component {
     const oReq = new XMLHttpRequest();
     oReq.open('POST',`/login`)
     oReq.onload = () => {
-      if (!JSON.parse(oReq.response).data) {
+      if (!JSON.parse(oReq.response).success) {
         // const {dispatch} = this.props;
         // dispatch(showErrorMessage(true));
         // dispatch(message(JSON.parse(oReq.response).error));
+
+        console.log('success',JSON.parse(oReq.response).success)
       } else {
+        console.log('username',JSON.parse(oReq.response).username)
         const {dispatch} = this.props;
-        dispatch(receiveTasks(JSON.parse(oReq.response).data));
+        dispatch(login(JSON.parse(oReq.response).username));
       }
     }
     oReq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
