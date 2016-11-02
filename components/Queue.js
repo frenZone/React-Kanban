@@ -56,7 +56,7 @@ class Queue extends React.Component {
       )
     }
     return(
-      <div className={styles.list}>
+      <div className={styles.list} >
 
         { renderedElement }
 

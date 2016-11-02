@@ -12,7 +12,7 @@ kanban.route('/api')
   });
 
 kanban.route('/move')
-  .post((req,res) =>{
+  .post(validate.authentication,(req,res) =>{
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
@@ -34,7 +34,7 @@ kanban.route('/move')
       });
   });
 kanban.route('/newTask')
-  .post(validate.newTask,validate.characterLimit, (req,res) => {
+  .post(validate.authentication, validate.newTask,validate.characterLimit, (req,res) => {
     db.Card.create({
       title: req.body.title,
       priority: req.body.priority,
@@ -52,7 +52,7 @@ kanban.route('/newTask')
   });
 
 kanban.route('/edit')
-  .post(validate.editTask, (req,res) =>{
+  .post(validate.authentication, validate.editTask, (req,res) =>{
     db.Card.findById(req.body.id)
       .then(card => {
         card.update({
@@ -74,7 +74,7 @@ kanban.route('/edit')
   });
 
 kanban.route('/delete')
-  .post((req,res) => {
+  .post(validate.authentication, (req,res) => {
     db.Card.findById(req.body.id)
       .then(card =>{
         card.destroy()
@@ -89,4 +89,30 @@ kanban.route('/delete')
         console.error(err);
       });
   });
+
+kanban.route('/login')
+  .post((req,res,next) => {
+    passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.json({success:false});
+      } else {
+        req.logIn(user, (err) => {
+          if (err) {
+            return next(err);
+          } else {
+            return res.json({
+              success: true,
+              username: user.username,
+              id: user.id
+            })
+          }
+        });
+      }
+    })
+  });
+
+
 module.exports = kanban;
