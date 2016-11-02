@@ -2,7 +2,6 @@ const express = require('express');
 const flash = require('connect-flash');
 const app = express();
 const bodyParser = require('body-parser');
-// const route = require('./routes/route.js');
 const passport = require('passport');
 const LocalStrategy = require ('passport-local');
 const session = require('express-session');

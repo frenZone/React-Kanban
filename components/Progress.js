@@ -41,7 +41,7 @@ class Progress extends React.Component {
       renderedElement = (
         <div className={styles.item}>
           <div className={styles.left}>
-            <h3>{this.props.title}</h3>
+            <p id={styles.taskTitle}>{this.props.title}</p>
             <p>Priority: {priority}</p>
             <p>Assigned By: {this.props.createdBy}</p>
 
@@ -65,7 +65,7 @@ class Progress extends React.Component {
       renderedElement = (
         <div className={styles.item}>
           <div className={styles.left}>
-            <h3>{this.props.title}</h3>
+            <p id={styles.taskTitle}>{this.props.title}</p>
             <p>Priority: {priority}</p>
             <p>Created By: {this.props.createdBy}</p>
           </div>
