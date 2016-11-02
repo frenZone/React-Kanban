@@ -45,7 +45,7 @@ class Progress extends React.Component {
             <p>Priority: {priority}</p>
             <p>Assigned By: {this.props.createdBy}</p>
 
-            <div className={styles.buttonsContainer}>
+            <div id={styles.progressButtons} className={styles.buttonsContainer}>
               <MoveQueueButton id={this.props.id} />
               <EditButton index={this.props.index} />
               <DeleteButton id={this.props.id} />

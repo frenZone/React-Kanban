@@ -46,7 +46,7 @@ class Done extends React.Component {
             <p>Priority: {priority}</p>
             <p>Assigned By: {this.props.createdBy}</p>
 
-            <div className={styles.buttonsContainer}>
+            <div id={styles.doneButtons} className={styles.buttonsContainer}>
               <MoveProgressButton id={this.props.id} arrow={'<'}/>
               <EditButton index={this.props.index} />
               <DeleteButton id={this.props.id} />

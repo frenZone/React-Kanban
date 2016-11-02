@@ -46,7 +46,7 @@ class Queue extends React.Component {
             <p>Assigned By: {this.props.createdBy}</p>
 
 
-            <div className={styles.buttonsContainer}>
+            <div id={styles.queueButtons} className={styles.buttonsContainer}>
               <EditButton index={this.props.index} />
               <DeleteButton id={this.props.id} />
               <MoveProgressButton id={this.props.id} arrow={'>'} />

@@ -14,8 +14,23 @@
   border-radius: 1%;
 }
 #doneBorder {
-  border: 1px solid #B8D1D6;
+  border: 1px solid #85a8af;
   border-radius: 1%;
+}
+
+#progressButtons {
+  color: green;
+  font-weight: bold;
+}
+
+#queueButtons {
+  color: orange;
+  font-weight: bold;
+}
+
+#doneButtons {
+  color: #85a8af;
+  font-weight: bold;
 }
 
 .priority {
@@ -48,7 +63,6 @@
 .buttonsContainer {
   display: flex;
   flex-flow: row wrap;
-
 }
 
 
