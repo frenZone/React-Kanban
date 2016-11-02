@@ -3,13 +3,13 @@ const flash = require('connect-flash');
 const app = express();
 const bodyParser = require('body-parser');
 // const route = require('./routes/route.js');
-// const passport = require('passport');
-// const LocalStrategy = require ('passport-local');
+const passport = require('passport');
+const LocalStrategy = require ('passport-local');
 const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const db = require('./models');
 const kanban = require('./routes/route.js');
-// const config = require('./config/config.json');
+const configSecret = require('./config/config.json').secret;
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const path = require('path');
@@ -24,6 +24,52 @@ app.use(bodyParser.urlencoded({extended:true}));
 // Check to see what dev environment we are in
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
+
+app.use(express.static('./public'));
+
+
+//passport, user authentication
+app.use(session({
+  store: new RedisStore(),
+  secret: configSecret,
+  resave: false,
+  saveUninitialized: true,
+}));
+
+app.use(passport.initialize());
+
+app.use(passport.session());
+
+passport.use(new LocalStrategy ((username, password, done)=>{
+  db.User.findOne({
+    where: {
+      username
+    }
+  })
+  .then((user)=>{
+    if(user === null) {
+      return done(null,false);
+    } else {
+      bcrypt.compare(password,user.password,(err,result)=>{
+        if(!result){
+          return done(null, false);
+        } else {
+          return done(null, user);
+        }
+      });
+    }
+  });
+}));
+
+passport.serializeUser((user, done)=> {
+  return done(null, user);
+});
+
+passport.deserializeUser((user, done)=>{
+  return done(null, user);
+});
+
+
 
 if (isDeveloping) {
   app.set('host', 'http://localhost');

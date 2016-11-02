@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 1000px;
+}
+
+.loginElement {
+  flex: 0 0 100%;
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
+}
+
+.input {
+  font-size: 15px;
+  font-family: 'Schoolbell', cursive;
+}
+
+.button {
+  font-size: 15px;
+  font-family: 'Schoolbell', cursive;
+  margin: 10px;
+}
+
+.form {
+  flex: 0 0 150px;
+  width: 150px;
+  padding: 20px 30px;
+  background: #F5F5F5;
+  background: linear-gradient(#F5F5F5, #DBDBDB);
+  box-shadow: 5px 2px 2px gray;
+}
+
+.subTitle {
+  font-size: 20px;
+  font-family: 'Schoolbell', cursive;
+}
+
+.title {
+  font-size: 3em;
+  font-family: 'Walter Turncoat', cursive;
+}
