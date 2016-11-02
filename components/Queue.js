@@ -74,7 +74,7 @@ class Queue extends React.Component {
       )
     }
     return(
-      <div className={styles.list} >
+      <div id={styles.queueBorder} className={styles.list} >
 
         { renderedElement }
 

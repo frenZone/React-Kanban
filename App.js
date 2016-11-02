@@ -6,7 +6,7 @@ class App extends React.Component {
     return (
       <div id={styles.mainContainer}>
         <div id={styles.header}>
-          <div>
+          <div id={styles.title}>
             <p>KANBAN</p>
           </div>
           <NavBar />

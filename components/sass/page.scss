@@ -34,6 +34,9 @@ $font-color: white;
 .button {
   font-size: 15px;
   font-family: 'Quattrocento Sans', sans-serif;
+  border: 1px solid gray;
+  background: white;
+  border-radius: 5%;
   &:hover {
     cursor: pointer;
   }

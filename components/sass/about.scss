@@ -22,12 +22,12 @@
 }
 
 #link {
-  font-size: 25px;
+  font-size: 18px;
   text-decoration: none;
-  color: black;
+  color: #02859E;
   display: inline-block;
   &:hover {
-    transform: scale(1.1);
+    color: #F5D06C;
     transition-duration: .5s;
   }
 }

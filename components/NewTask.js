@@ -56,8 +56,8 @@ class NewTask extends React.Component {
           <input ref='assignedTo' type='text' placeholder='Assigned To' name='assignedTo' className={styles.input}/>
 
         </form>
-        <button onClick={this.toggle} className={styles.button}>x</button>
-        <button onClick={this.newData} form='newInput' className={styles.button}>Enter</button>
+        <p onClick={this.toggle} className={styles.button}>x</p>
+        <p onClick={this.newData} form='newInput' className={styles.button}>Enter</p>
       </div>
     )
   }

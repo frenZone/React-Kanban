@@ -3,6 +3,10 @@
   flex-flow: row wrap;
 }
 
+@mixin separators() {
+  padding-right: 20px;
+  border-right: 1px solid gray;
+}
 
 #listHolder {
   @include flexParent();
@@ -15,10 +19,28 @@
   flex: 0 0 400px;
   text-align: center;
   margin: 10px;
-
+  box-sizing: border-box;
 }
 
 .title {
   font-family: 'Quattrocento Sans', sans-serif;
   font-size: 20px;
+}
+
+#queue {
+  @include separators();
+  div {
+    background-color: #F9EED0;
+  }
+}
+
+#progress {
+  @include separators();
+  div {
+    background-color: #E0F9E4;
+  }
+}
+
+#done > div {
+  background-color: #F5FAFB;
 }

@@ -13,6 +13,7 @@ class Login extends React.Component {
     this.resetForm = this.resetForm.bind(this);
   }
 
+
   login(e) {
     e.preventDefault();
     const username = ReactDOM.findDOMNode(this.refs.username).value.trim();
@@ -50,7 +51,7 @@ class Login extends React.Component {
       renderedElement = (
         <div className={styles.container}>
           <div className={styles.loginElement}>
-            <p className={styles.title}>Login</p>
+            <p className={styles.title}>LOGIN</p>
             <p className={styles.error}>Invalid username or password</p>
           </div>
           <div className={styles.loginForm}>
@@ -68,7 +69,7 @@ class Login extends React.Component {
       renderedElement = (
         <div className={styles.container}>
         <div className={styles.loginElement}>
-          <h1 className={styles.title}>Login</h1>
+          <h1 className={styles.title}>LOGIN</h1>
         </div>
         <div className={styles.loginForm}>
           <form className={styles.form}>

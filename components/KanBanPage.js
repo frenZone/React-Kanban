@@ -50,13 +50,13 @@ class KanBanPage extends React.Component {
     if (!this.props.showNewForm && !this.props.showErrorMessage && this.props.user) {
       renderedElement = (
         <div>
-          <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
+          <button id='toggleInput' onClick={this.show} className={styles.button}>+ NEW TASK</button>
         </div>
       )
     } else if(this.props.showErrorMessage && this.props.user){
       renderedElement = (
         <div>
-          <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
+          <button id='toggleInput' onClick={this.show} className={styles.button}>+ NEW TASK</button>
           <p id={styles.errorMsg}>{this.props.message}</p>
         </div>
       )

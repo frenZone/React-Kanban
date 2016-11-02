@@ -76,7 +76,7 @@ class Progress extends React.Component {
       )
     }
     return(
-      <div className={styles.list}>
+      <div id={styles.progressBorder} className={styles.list}>
 
         {renderedElement}
 

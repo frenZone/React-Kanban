@@ -75,7 +75,7 @@ class Done extends React.Component {
       )
     }
     return(
-      <div className={styles.list}>
+      <div id={styles.doneBorder} className={styles.list}>
 
         {renderedElement}
 

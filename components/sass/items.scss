@@ -2,6 +2,20 @@
   text-align: left;
   background: #F5F5F5;
   font-family: 'Quattrocento Sans', sans-serif;
+  margin: 10px 0;
+}
+
+#queueBorder {
+  border: 1px solid orange;
+  border-radius: 1%;
+}
+#progressBorder {
+  border: 1px solid green;
+  border-radius: 1%;
+}
+#doneBorder {
+  border: 1px solid #B8D1D6;
+  border-radius: 1%;
 }
 
 .priority {
@@ -28,7 +42,7 @@
 .editForm {
   width: 160px;
   padding: 8px;
-  margin: auto;
+  margin: 10px;
 }
 
 .buttonsContainer {

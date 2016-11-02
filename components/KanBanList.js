@@ -63,15 +63,15 @@ class KanBanList extends React.Component {
 
     return (
       <div id={styles.listHolder}>
-        <div id='Queue' className={styles.list}>
+        <div id={styles.queue} className={styles.list}>
           <h1 className={styles.title}>IN QUEUE</h1>
           {QueueListNode}
         </div>
-        <div id='Progress' className={styles.list}>
+        <div id={styles.progress} className={styles.list}>
           <h1 className={styles.title}>IN PROGRESS</h1>
           {ProgressListNode}
         </div>
-        <div id='Done' className={styles.list}>
+        <div id={styles.done} className={styles.list}>
           <h1 className={styles.title}>DONE</h1>
           {DoneListNode}
         </div>
