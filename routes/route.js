@@ -94,7 +94,6 @@ kanban.route('/delete')
 
 kanban.route('/login')
   .post((req,res,next) => {
-    console.log('here')
     passport.authenticate('local', (err, user, info) => {
       if (err) {
         return next(err);

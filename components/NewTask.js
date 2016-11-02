@@ -63,4 +63,5 @@ class NewTask extends React.Component {
   }
 }
 
+
 export default connect()(NewTask);

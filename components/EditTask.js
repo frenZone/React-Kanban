@@ -54,9 +54,8 @@ class EditTask extends React.Component {
     } else {
       priority = 'Low';
     }
-    let renderedElement;
-    if(this.props.user) {
-      renderedElement = (
+    return (
+      <div>
         <form className={styles.editForm}>
           <div>Title</div>
           <input type='text' ref='title' placeholder={this.props.title} name='title' className={styles.input}/>
@@ -73,18 +72,6 @@ class EditTask extends React.Component {
           <button onClick={this.hideForm} className={styles.button}>x</button>
           <button onClick={this.editData} className={styles.button}>Edit</button>
         </form>
-      )
-    } else {
-      renderedElement = (
-        <div>
-          <h3>Must be signed in to Edit</h3>
-          <button onClick={this.hideForm} className={styles.button}>x</button>
-        </div>
-      )
-    }
-    return (
-      <div>
-        {renderedElement}
       </div>
     )
   }
@@ -97,6 +84,4 @@ const mapStateToProps = (state, ownProps) => {
     user: kanbanReducer.get('login')
   }
 }
-export default connect(
-  mapStateToProps
-)(EditTask);
+export default connect()(EditTask);

@@ -47,13 +47,13 @@ class KanBanPage extends React.Component {
 
   render(){
     let renderedElement;
-    if (!this.props.showNewForm && !this.props.showErrorMessage) {
+    if (!this.props.showNewForm && !this.props.showErrorMessage && this.props.user) {
       renderedElement = (
         <div>
           <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
         </div>
       )
-    } else if(this.props.showErrorMessage){
+    } else if(this.props.showErrorMessage && this.props.user){
       renderedElement = (
         <div>
           <button id='toggleInput' onClick={this.show} className={styles.button}>New Task</button>
@@ -61,9 +61,13 @@ class KanBanPage extends React.Component {
         </div>
       )
 
-    } else {
+    } else if(this.props.user) {
       renderedElement = (
         <NewTask />
+      )
+    } else {
+      renderedElement = (
+        <div></div>
       )
     }
     return (

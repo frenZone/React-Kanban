@@ -4,6 +4,7 @@ export const TOGGLE_EDIT_FORM = 'TOGGLE_EDIT_FORM';
 export const SHOW_ERROR_MESSAGE =  'SHOW_ERROR_MESSAGE';
 export const MESSAGE = 'MESSAGE';
 export const LOGIN = 'LOGIN';
+export const SHOW_LOGIN_ERR = 'SHOW_LOGIN_ERR';
 
 export const receiveTasks = (data) => {
   return {
@@ -44,5 +45,12 @@ export const login = (user) => {
   return {
     type: LOGIN,
     data: user
+  }
+}
+
+export const showLoginErr = (bool) => {
+  return {
+    type: SHOW_LOGIN_ERR,
+    data: bool
   }
 }

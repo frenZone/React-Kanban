@@ -5,7 +5,8 @@ import {
   TOGGLE_EDIT_FORM,
   SHOW_ERROR_MESSAGE,
   MESSAGE,
-  LOGIN
+  LOGIN,
+  SHOW_LOGIN_ERR
 } from '../actions/kanbanActions';
 
 const initialState = Map({
@@ -13,7 +14,8 @@ const initialState = Map({
   showNewForm: false,
   showErrorMessage: false,
   message: null,
-  login: null
+  login: null,
+  showLoginErr: false
 });
 
 const kanbanReducer = (state=initialState, action) => {
@@ -49,6 +51,9 @@ const kanbanReducer = (state=initialState, action) => {
 
     case LOGIN:
       return state.set('login',action.data);
+
+    case SHOW_LOGIN_ERR:
+      return state.set('showLoginErr',action.data);
 
     default:
       return state;

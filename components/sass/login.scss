@@ -8,10 +8,6 @@
 .loginElement {
   flex: 0 0 100%;
   text-align: center;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-
 }
 
 .input {
@@ -42,4 +38,19 @@
 .title {
   font-size: 3em;
   font-family: 'Walter Turncoat', cursive;
+}
+
+.error {
+  font-size: 20px;
+  font-family: 'Schoolbell', cursive;
+  color: red;
+}
+
+.loginForm {
+  flex: 0 0 100%;
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+
 }

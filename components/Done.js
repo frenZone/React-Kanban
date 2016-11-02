@@ -38,7 +38,7 @@ class Done extends React.Component {
           />
         </div>
       )
-    } else {
+    } else if(this.props.user) {
       renderedElement = (
         <div className={styles.item}>
           <h3>{this.props.title}</h3>
@@ -56,6 +56,15 @@ class Done extends React.Component {
           </div>
         </div>
       )
+    } else {
+      renderedElement = (
+        <div className={styles.item}>
+          <h3>{this.props.title}</h3>
+          <p>Priority Level: {priority}</p>
+          <p>Created By: {this.props.createdBy}</p>
+          <p>Assigned To: {this.props.assignedTo}</p>
+        </div>
+      )
     }
     return(
       <div className={styles.list}>
@@ -66,4 +75,15 @@ class Done extends React.Component {
     )
   }
 }
-export default connect()(Done);
+
+const mapStateToProps = (state, ownProps) => {
+
+  const { kanbanReducer } = state;
+  return {
+    user: kanbanReducer.get('login')
+  }
+}
+export default connect(
+  mapStateToProps
+)(Done);
+
