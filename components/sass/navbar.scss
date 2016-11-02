@@ -2,21 +2,16 @@
   list-style: none;
   display: flex;
   flex-flow: row wrap;
-  width: 970px;
-  margin: 0 auto;
+  width: 270px;
 }
 
 .li {
   text-decoration: none;
-  font-family: 'Schoolbell', cursive;
-  font-size: 20px;
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 17px;
   background-color: #F5F5F5;
-  padding: 20px;
-  margin: 10px;
+  padding: 10px;
+  margin: 5px;
   color: black;
-  box-shadow: 5px 2px 2px grey;
-  transition: padding 0.5s;
-  &:hover{
-    padding: 40px 20px;
-  }
+
 }

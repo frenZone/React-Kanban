@@ -24,7 +24,7 @@ class MoveDoneButton extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.toDone} className={styles.button} >{'>'}</button>
+        <p onClick={this.toDone} className={styles.button} >{'>'}</p>
       </div>
     )
   }

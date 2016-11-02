@@ -25,7 +25,7 @@ class Done extends React.Component {
     }
 
     let renderedElement;
-    if(this.props.showEditForm) {
+    if(this.props.showEditForm && this.props.user) {
       renderedElement = (
         <div id={this.props.id}>
           <EditTask
@@ -41,28 +41,36 @@ class Done extends React.Component {
     } else if(this.props.user) {
       renderedElement = (
         <div className={styles.item}>
-          <h3>{this.props.title}</h3>
-          <p>Priority Level: {priority}</p>
-          <p>Created By: {this.props.createdBy}</p>
-          <p>Assigned To: {this.props.assignedTo}</p>
+          <div className={styles.left}>
+            <h3>{this.props.title}</h3>
+            <p>Priority: {priority}</p>
+            <p>Assigned By: {this.props.createdBy}</p>
 
-          <div className={styles.buttonsContainer}>
-            <MoveProgressButton id={this.props.id} arrow={'<'}/>
+            <div className={styles.buttonsContainer}>
+              <MoveProgressButton id={this.props.id} arrow={'<'}/>
+              <EditButton index={this.props.index} />
+              <DeleteButton id={this.props.id} />
+            </div>
           </div>
 
-          <div className={styles.buttonsContainer}>
-            <EditButton index={this.props.index} />
-            <DeleteButton id={this.props.id} />
+          <div className={styles.right}>
+            <div>
+              <p>{this.props.assignedTo}</p>
+            </div>
           </div>
         </div>
       )
     } else {
       renderedElement = (
         <div className={styles.item}>
-          <h3>{this.props.title}</h3>
-          <p>Priority Level: {priority}</p>
-          <p>Created By: {this.props.createdBy}</p>
-          <p>Assigned To: {this.props.assignedTo}</p>
+          <div className={styles.left}>
+            <h3>{this.props.title}</h3>
+            <p>Priority: {priority}</p>
+            <p>Created By: {this.props.createdBy}</p>
+          </div>
+          <div className={styles.right}>
+            <p>{this.props.assignedTo}</p>
+          </div>
         </div>
       )
     }

@@ -24,7 +24,7 @@ class MoveQueueButton extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.toQueue} className={styles.button} >{'<'}</button>
+        <p onClick={this.toQueue} className={styles.button} >{'<'}</p>
       </div>
     )
   }

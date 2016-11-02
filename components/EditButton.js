@@ -17,7 +17,7 @@ class EditButton extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.showForm} className={styles.button}>Edit</button>
+        <p onClick={this.showForm} className={styles.button}>Edit</p>
       </div>
     )
   }

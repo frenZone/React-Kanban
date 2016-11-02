@@ -1,0 +1,21 @@
+#header {
+  font-family: 'Quattrocento Sans', sans-serif;
+  color: white;
+  background: #4F4F4F;
+  padding: 3px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  p {
+    font-size: 20px;
+    margin: 10px;
+  }
+  div {
+    flex: 0 0 30px;
+  }
+}
+
+#mainContainer {
+  width: 1300px;
+  margin: 0 auto;
+}

@@ -25,8 +25,6 @@ app.use(bodyParser.urlencoded({extended:true}));
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = isDeveloping ? 3000 : process.env.PORT;
 
-app.use(express.static('./public'));
-
 
 //passport, user authentication
 app.use(session({

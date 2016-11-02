@@ -1,28 +1,17 @@
 .list {
-  text-align: center;
+  text-align: left;
   background: #F5F5F5;
-  background: linear-gradient(#F5F5F5, #DBDBDB);
-  font-family: 'Schoolbell', cursive;
-  box-shadow: 5px 2px 2px gray;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .priority {
   width: 150px;
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   font-size: 15px;
 }
 
-.buttonsContainer {
-  display: flex;
-  flex-flow: row-wrap;
-  justify-content: center;
-  div {
-    flex: 0 0 1%;
-  }
-}
-
 .button {
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   font-size: 15px;
   margin: 3px;
   &:hover {
@@ -31,7 +20,7 @@
 }
 
 .input {
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   font-size: 15px;
   margin: 3px;
 }
@@ -42,8 +31,33 @@
   margin: auto;
 }
 
+.buttonsContainer {
+  display: flex;
+  flex-flow: row wrap;
+
+}
+
+
 .item {
   padding: 10px;
   margin: 15px;
   transition: padding 0.5s;
+  display: flex;
+  flex-flow: row wrap;
 }
+
+.left {
+  flex: 0 0 70%;
+  p {
+    font-size: 15px;
+  }
+}
+
+.right {
+  flex: 0 0 30%;
+  text-align: right;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+

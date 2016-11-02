@@ -50,14 +50,14 @@ class Login extends React.Component {
       renderedElement = (
         <div className={styles.container}>
           <div className={styles.loginElement}>
-            <h1 className={styles.title}>Login</h1>
+            <p className={styles.title}>Login</p>
             <p className={styles.error}>Invalid username or password</p>
           </div>
           <div className={styles.loginForm}>
             <form className={styles.form}>
-              <h3 className={styles.subTitle}>Username</h3>
+              <p className={styles.subTitle}>Username</p>
               <input ref='username' className={styles.input}/>
-              <h3 className={styles.subTitle}>Password</h3>
+              <p className={styles.subTitle}>Password</p>
               <input type='password' ref='password' className={styles.input}/>
               <button className={styles.button} onClick={this.login}>Enter</button>
             </form>

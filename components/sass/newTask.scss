@@ -1,13 +1,13 @@
 
 .priority {
   width: 150px;
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   font-size: 15px;
 }
 
 .button {
   font-size: 15px;
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   margin: 3px;
   &:hover {
     cursor: pointer;
@@ -16,13 +16,11 @@
 
 .input {
   font-size: 15px;
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   margin: 3px;
 }
 
 .form {
   padding: 20px 30px;
   background: #F5F5F5;
-  background: linear-gradient(#F5F5F5, #DBDBDB);
-  box-shadow: 5px 2px 2px gray;
 }

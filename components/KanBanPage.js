@@ -72,9 +72,6 @@ class KanBanPage extends React.Component {
     }
     return (
       <div id={styles.page}>
-        <div id={styles.header}>
-          <h1>Kanban Board</h1>
-        </div>
         <div id={styles.newInput}>
           { renderedElement }
         </div>

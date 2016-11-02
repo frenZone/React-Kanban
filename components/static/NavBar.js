@@ -23,18 +23,18 @@ class NavBar extends React.Component {
     if(this.props.user) {
       renderedElement = (
         <ul role='nav' className={styles.nav}>
-          <li><Link to='/' className={styles.li}>Home</Link></li>
-          <li><Link to='/about' className={styles.li}>About</Link></li>
-          <li><Link to='/' className={styles.li} onClick={this.logout}>Logout</Link></li>
+          <li><Link to='/' className={styles.li}>HOME</Link></li>
+          <li><Link to='/about' className={styles.li}>ABOUT</Link></li>
+          <li><Link to='/' className={styles.li} onClick={this.logout}>LOGOUT</Link></li>
         </ul>
       )
     } else {
       renderedElement = (
 
         <ul role='nav' className={styles.nav}>
-          <li><Link to='/' className={styles.li}>Home</Link></li>
-          <li><Link to='/about' className={styles.li}>About</Link></li>
-          <li><Link to='/login' className={styles.li}>Login</Link></li>
+          <li><Link to='/' className={styles.li}>HOME</Link></li>
+          <li><Link to='/about' className={styles.li}>ABOUT</Link></li>
+          <li><Link to='/login' className={styles.li}>LOGIN</Link></li>
         </ul>
       )
     }

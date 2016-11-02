@@ -24,7 +24,7 @@ class MoveProgressButton extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.toProgress} className={styles.button} >{this.props.arrow}</button>
+        <p onClick={this.toProgress} className={styles.button} >{this.props.arrow}</p>
       </div>
     )
   }

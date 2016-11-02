@@ -2,7 +2,6 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  width: 1000px;
 }
 
 .loginElement {
@@ -12,37 +11,34 @@
 
 .input {
   font-size: 15px;
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .button {
   font-size: 15px;
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   margin: 10px;
 }
 
 .form {
-  flex: 0 0 150px;
-  width: 150px;
+  flex: 0 0 200px;
   padding: 20px 30px;
   background: #F5F5F5;
-  background: linear-gradient(#F5F5F5, #DBDBDB);
-  box-shadow: 5px 2px 2px gray;
 }
 
 .subTitle {
-  font-size: 20px;
-  font-family: 'Schoolbell', cursive;
+  font-size: 15px;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .title {
-  font-size: 3em;
-  font-family: 'Walter Turncoat', cursive;
+  font-size: 25px;
+  font-family: 'Quattrocento Sans', sans-serif;
 }
 
 .error {
-  font-size: 20px;
-  font-family: 'Schoolbell', cursive;
+  font-size: 15px;
+  font-family: 'Quattrocento Sans', sans-serif;
   color: red;
 }
 

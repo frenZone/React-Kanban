@@ -6,19 +6,19 @@
 
 #listHolder {
   @include flexParent();
-  justify-content: center;
+  justify-content: space-between;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .list {
-  flex: 0 0 28%;
+  flex: 0 0 400px;
   text-align: center;
   margin: 10px;
 
 }
 
 .title {
-  font-family: 'Walter Turncoat', cursive;
-  font-size: 30px;
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 20px;
 }

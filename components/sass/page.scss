@@ -7,25 +7,33 @@ $font-color: white;
 
 #newInput {
   @include flexParent();
-  width: 150px;
-  justify-content: center;
-  margin: auto;
+  justify-content: flex-end;
+  margin: 10px;
   div {
-    flex: 0 0 100%;
-    text-align: center;
+    flex: 0 0 120px;
   }
 }
 
 #header {
-  text-align: center;
-  font-family: 'Walter Turncoat', cursive;
-  // color: $font-color;
-  font-size: 1.5em;
+  font-family: 'Quattrocento Sans', sans-serif;
+  color: white;
+  background: #4F4F4F;
+  padding: 3px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  p {
+    font-size: 20px;
+    margin: 10px;
+  }
+  div {
+    flex: 0 0 30px;
+  }
 }
 
 .button {
   font-size: 15px;
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   &:hover {
     cursor: pointer;
   }
@@ -33,11 +41,11 @@ $font-color: white;
 
 
 #page {
-  width: 1000px;
+  width: 1300px;
   margin: 0 auto;
 }
 
 #errorMsg {
-  font-family: 'Schoolbell', cursive;
+  font-family: 'Quattrocento Sans', sans-serif;
   color: red;
 }
