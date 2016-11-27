@@ -1,7 +1,14 @@
 # React Kanban
 > A digital Kanban board made with React
 
+Public View
+![](https://github.com/reneechar/React-Kanban/blob/master/github_images/src1.png)
+
+Signed in View
+![](https://github.com/reneechar/React-Kanban/blob/master/github_images/src2.png)
 ---
+
+
 
 ###Run Kanban
 
