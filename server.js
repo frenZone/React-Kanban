@@ -107,10 +107,7 @@ app.listen(port, function() {
     `Open up http://localhost:${port}/ in your browser.`);
   db.sequelize.sync()
     .catch(err =>{
-      res.json({
-        success: false,
-        error: err
-      });
+      console.err(err);
     });
 });
 
