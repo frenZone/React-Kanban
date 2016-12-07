@@ -14,15 +14,18 @@ const saltRounds = 10;
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
+const staticGz = require('http-static-gzip-regexp');
 const webpackMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const config = require('./webpack.config.js');
 
+app.use(staticGz(/(\.html|\.js|\.css)$/));
 app.use(bodyParser.urlencoded({extended:true}));
 
+
 // Check to see what dev environment we are in
-const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = isDeveloping ? 3000 : process.env.PORT;
+const isDeveloping = false;
+const port = 3000;
 
 
 //passport, user authentication
@@ -66,7 +69,7 @@ passport.deserializeUser((user, done)=>{
   return done(null, user);
 });
 
-
+app.use('/api',kanban);
 
 if (isDeveloping) {
   app.set('host', 'http://localhost');
@@ -90,11 +93,12 @@ if (isDeveloping) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  app.use('/',kanban);
+
   app.get('*', response);
 } else {
+  console.log('production environment');
   app.use(express.static(`${__dirname}/dist`));
-  app.use('/',kanban);
+
   app.get('*', (req, res) => {
     res.write(
       fs.readFileSync(path.resolve(__dirname, 'dist/index.html'))
@@ -107,7 +111,7 @@ app.listen(port, function() {
     `Open up http://localhost:${port}/ in your browser.`);
   db.sequelize.sync()
     .catch(err =>{
-      console.err(err);
+      console.log(err);
     });
 });
 

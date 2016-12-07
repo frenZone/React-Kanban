@@ -5,7 +5,7 @@ const validate = require('./middleware');
 const passport = require('passport');
 
 
-kanban.route('/api')
+kanban.route('/')
   .get((req,res) =>{
     db.Card.findAll({ order: [['priority', 'DESC']] })
       .then(data =>{

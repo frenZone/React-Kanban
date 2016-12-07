@@ -20,7 +20,7 @@ class Login extends React.Component {
     const password = ReactDOM.findDOMNode(this.refs.password).value.trim();
 
     const oReq = new XMLHttpRequest();
-    oReq.open('POST',`/login`)
+    oReq.open('POST',`/api/login`)
     oReq.onload = () => {
       if (!JSON.parse(oReq.response).success) {
         // const {dispatch} = this.props;

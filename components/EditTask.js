@@ -28,7 +28,7 @@ class EditTask extends React.Component {
 
 
     const oReq = new XMLHttpRequest();
-    oReq.open('POST',`/edit`)
+    oReq.open('POST',`/api/edit`)
     oReq.onload = () => {
       const {dispatch} = this.props;
       dispatch(receiveTasks(JSON.parse(oReq.response).data))

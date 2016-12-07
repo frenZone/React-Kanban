@@ -12,7 +12,7 @@ class MoveProgressButton extends React.Component {
   toProgress(e) {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
-    oReq.open('POST',`/move`)
+    oReq.open('POST',`/api/move`)
     oReq.onload = () => {
       const {dispatch} = this.props;
       dispatch(receiveTasks(JSON.parse(oReq.response).data))

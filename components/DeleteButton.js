@@ -12,7 +12,7 @@ class DeleteButton extends React.Component {
   deleteData(e) {
     e.preventDefault();
     const oReq = new XMLHttpRequest();
-    oReq.open('POST',`/delete`)
+    oReq.open('POST',`/api/delete`)
     oReq.onload = () => {
       const {dispatch} = this.props;
       dispatch(receiveTasks(JSON.parse(oReq.response).data))
