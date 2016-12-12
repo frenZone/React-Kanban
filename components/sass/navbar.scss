@@ -13,5 +13,14 @@
   padding: 10px;
   margin: 5px;
   color: black;
+}
 
+@media screen and (max-width: 550px) {
+  .nav {
+    width: 230px;
+  }
+
+  .li {
+    font-size: 13px;
+  }
 }
