@@ -8,7 +8,7 @@ class App extends React.Component {
       <div id={styles.mainContainer}>
         <div id={styles.header}>
           <div id={styles.title}>
-            <p>KANBAN</p>
+            <p id={styles.desktopTitle}>KANBAN</p>
           </div>
           <NavBar />
         </div>

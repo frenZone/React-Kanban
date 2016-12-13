@@ -39,7 +39,7 @@ class NavBar extends React.Component {
       )
     }
     return (
-      <div>
+      <div id={styles.navBox}>
         {renderedElement}
       </div>
     )

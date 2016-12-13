@@ -49,7 +49,7 @@ class Queue extends React.Component {
             <div id={styles.queueButtons} className={styles.buttonsContainer}>
               <EditButton index={this.props.index} />
               <DeleteButton id={this.props.id} />
-              <MoveProgressButton id={this.props.id} arrow={'>'} />
+              <MoveProgressButton id={this.props.id} arrow={'▻'} />
             </div>
           </div>
           <div className={styles.right}>

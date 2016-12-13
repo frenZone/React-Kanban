@@ -91,3 +91,12 @@
 #taskTitle {
   font-size: 18px;
 }
+
+#rightArrow:before {
+  content: '▻';
+}
+
+#leftArrow:before {
+  content: '◅';
+}
+
