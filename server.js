@@ -9,7 +9,7 @@ const RedisStore = require('connect-redis')(session);
 const db = require('./models');
 const kanban = require('./routes/route.js');
 const configSecret = require('./config/config.json').secret;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const saltRounds = 10;
 const path = require('path');
 const fs = require('fs');
@@ -113,4 +113,3 @@ app.listen(port, function() {
       });
     });
 });
-
