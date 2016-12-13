@@ -1,4 +1,5 @@
-me": "react-kanban",
+{
+  "name": "react-kanban",
   "version": "1.0.0",
   "description": "> A digital Kanban board made with React",
   "main": "server.js",
