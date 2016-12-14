@@ -10,7 +10,6 @@ const db = require('./models');
 const kanban = require('./routes/route.js');
 const configSecret = require('./config/config.json').secret;
 const bcrypt = require('bcrypt-nodejs');
-const saltRounds = 10;
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
@@ -98,7 +97,8 @@ if (isDeveloping) {
   app.get('*', (req, res) => {
     res.write(
       fs.readFileSync(path.resolve(__dirname, 'dist/index.html'))
-    );
+    )
+    res.end();
   });
 }
 
